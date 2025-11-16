@@ -7,6 +7,8 @@ export default function Editfluxo({ onClose, element, reload }) {
   //States das informações abaixo
 
   const [form, setform] = useState({
+    _id: element._id,
+    userID: element.userID,
     tipo: element.tipo,
     valor: element.valor,
     descrição: element.descrição,
@@ -27,15 +29,18 @@ export default function Editfluxo({ onClose, element, reload }) {
 
   return (
     <>
-      <div>
-        <h1>Editar Fluxo</h1>
-        <button
-          onClick={() => {
-            onClose()
-          }}
-        >
-          SAIR
-        </button>
+      <div className="addfluxo">
+        <div className="addfluxo-title">
+          <h1>Editar Fluxo</h1>
+          <button
+            onClick={() => {
+              onClose()
+            }}
+          >
+            ❌
+          </button>
+        </div>
+
         <div>
           <p>Tipo / Entrada ou saíada \</p>
           <select
@@ -143,7 +148,6 @@ export default function Editfluxo({ onClose, element, reload }) {
                 setcallmenssager([false, ""])
               }, 1500)
             } else {
-              console.log(form)
               fetch(http + "/editarfluxo", {
                 method: "post",
                 headers: {

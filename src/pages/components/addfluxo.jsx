@@ -153,6 +153,7 @@ export default function AddFluxo({ onClose, reload }) {
                 },
                 body: JSON.stringify(form),
               }).then(async (res) => {
+                console.log(res.ok)
                 if (res.ok) {
                   setcallmenssager([true, "Fluxo cadastrado com sucesso✅"])
                   reload()

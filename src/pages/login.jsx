@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/Usercontext"
+import Menssager from "./components/menssager"
+import Secret from "./components/secret/secret"
 import "../style/Login.css"
 
 export default function Login() {
@@ -9,9 +11,10 @@ export default function Login() {
 
   const [name, setname] = useState("")
   const [password, setpassword] = useState("")
-
+  const [callmenssager, setcallmenssager] = useState([false, ""])
   return (
     <nav className="login-nav">
+      <Secret />
       <input
         placeholder="User"
         className="login-input"
@@ -33,6 +36,7 @@ export default function Login() {
       <button
         className="login-button"
         onClick={() => {
+          setcallmenssager([true, "Carregando"])
           fetch(http + "/login", {
             method: "POST",
             headers: {
@@ -50,8 +54,13 @@ export default function Login() {
                 setlogin(true)
                 setUsuario(res.usuario)
                 navigate("/deshboard")
+                setcallmenssager([false, ""])
               } else {
                 console.log("Credenciais erradas ou erro!")
+                setcallmenssager([true, "Credenciais erradas ou erro"])
+                setTimeout(() => {
+                  setcallmenssager([false, ""])
+                }, 1500)
               }
             })
             .catch((err) => {
@@ -72,6 +81,7 @@ export default function Login() {
           Criar conta
         </span>
       </p>
+      {callmenssager[0] && <Menssager menssager="Carregando" />}
     </nav>
   )
 }
