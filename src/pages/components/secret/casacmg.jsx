@@ -26,7 +26,7 @@ export default function CasaCmg() {
           }}
         >
           <h1>Te amo dms princesa</h1>
-          <video src="videos/lary.mp4" controls autoPlay muted></video>
+          <video src="videos/lary.mp4" controls autoPlay></video>
           <button
             onClick={() => {
               navigate("/")
