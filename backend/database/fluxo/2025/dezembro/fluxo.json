@@ -1,0 +1,24 @@
+{
+  "fluxo": [
+    {
+      "id": "d882f721-7d75-4fc2-820c-e898a669f028",
+      "tipo": "Saída",
+      "valor": "10",
+      "descrição": "",
+      "data": "2025-12-24",
+      "categoria": "Locomoção",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "312d029d-584f-47c0-add2-a1ad4249c764",
+      "tipo": "Saída",
+      "valor": "1000",
+      "descrição": "aaaaaaaa",
+      "data": "2025-12-23",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": "aaaaaaa"
+    }
+  ]
+}

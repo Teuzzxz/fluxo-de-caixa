@@ -1,0 +1,24 @@
+{
+  "usuarios": [
+    {
+      "id": "859ba33d-0a97-49a1-9a55-1d7ebb975eb8",
+      "name": "123",
+      "password": "123"
+    },
+    {
+      "id": "189b9b7f-490b-471f-8412-477b90140419",
+      "name": "dawd",
+      "password": "dawd"
+    },
+    {
+      "id": "dbea1799-8ac6-4dd0-a55a-0762822629c7",
+      "name": "123",
+      "password": "123"
+    },
+    {
+      "id": "40501598-1e5d-446f-9e01-bf2213e768c3",
+      "name": "123",
+      "password": "123"
+    }
+  ]
+}

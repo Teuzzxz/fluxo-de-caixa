@@ -1,0 +1,132 @@
+/* @keyframes show {
+  0% {
+    top: 7%;
+  }
+  50% {
+    top: 7%;
+    opacity: 1;
+  }
+  100% {
+    top: -10%;
+    opacity: 0;
+  }
+} */
+.menssager-div {
+  background-color: white;
+  padding: 5px 30px 5px 30px;
+  font-size: 0.7em;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px black;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* animation: show 2s forwards; */
+}
+.deshboard-div-lista-fluxo-grid {
+  width: 60vw;
+  height: 300px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid black;
+}
+.deshboard-div-lista-fluxo {
+  text-align: center;
+  font-size: 0.4em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr 0.5fr 0.5fr;
+  & h1 {
+    border: 1px solid black;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+.deshbord-div-botoes-mes {
+  background-color: #4bb25a;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .deshbord-button {
+    font-size: 2em;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+  }
+
+  & .deshbord-data-select {
+    width: 200px;
+    font-size: 1.5em;
+    margin: 0px 20px;
+  }
+
+  & .deshbord-button-add-rec {
+    height: 38px;
+    margin: 0px 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: #4bb25a;
+    box-shadow: 2px 2px 5px black;
+    border: none;
+  }
+}
+.deshboard-div-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+}
+.deshbord-button-del-edit {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: red;
+  box-shadow: 2px 2px 5px black;
+  border: none;
+}
+.addfluxo {
+  position: absolute;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+
+  & .addfluxo-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    & button {
+      border: none;
+      width: 40px;
+      height: 40px;
+      box-shadow: 2px 2px 5px black;
+    }
+  }
+}
+.deshboard-lista-resumo {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+
+  & .deshboard-resumo {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    & h1 {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

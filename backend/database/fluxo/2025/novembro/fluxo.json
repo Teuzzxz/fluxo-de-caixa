@@ -1,0 +1,134 @@
+{
+  "fluxo": [
+    {
+      "id": "b8fe1925-8a1e-472a-928d-e3e68353c06b",
+      "tipo": "Saída",
+      "valor": "10",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "Saúde",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "dd776b49-3175-46b0-8da6-642de5179f72",
+      "tipo": "Saída",
+      "valor": "10",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "12e6a90e-e19b-4bb3-86ca-a96a8f0c84de",
+      "tipo": "Saída",
+      "valor": "250",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "Esporte",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "436aa518-e182-4fc3-87c9-3336e8f4cdbd",
+      "tipo": "Entrada",
+      "valor": "432",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "da78d39b-8e7d-49fd-abad-934207c76015",
+      "tipo": "Entrada",
+      "valor": "3213",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "3eb17214-6dd3-42d5-8d58-a0bfa4c27ba5",
+      "tipo": "Entrada",
+      "valor": "4324",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "51168f21-b629-48f4-883d-17f27674c4c9",
+      "tipo": "Entrada",
+      "valor": "43",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "0291b6f0-57cc-4438-8a37-f0de18a83d58",
+      "tipo": "Entrada",
+      "valor": "1212",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "eca8acbf-034e-4360-9970-6ef00d3081ed",
+      "tipo": "Entrada",
+      "valor": "10",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "81eb24ad-11e4-4db9-a057-0120c365e7b9",
+      "tipo": "Entrada",
+      "valor": "1200",
+      "descrição": "teste 123",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "e6c2178b-95d0-41bd-a31d-e754a81157e8",
+      "tipo": "Entrada",
+      "valor": "12",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "2c203a34-890f-4649-af86-fe586363f742",
+      "tipo": "Entrada",
+      "valor": "323",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "dbcdadd6-e0c4-42e1-b717-d9f392852e53",
+      "tipo": "Entrada",
+      "valor": "10",
+      "descrição": "",
+      "data": "2025-11-10",
+      "categoria": "",
+      "formadepagamento": "Pix",
+      "observação": ""
+    }
+  ]
+}

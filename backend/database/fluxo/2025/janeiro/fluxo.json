@@ -1,0 +1,44 @@
+{
+  "fluxo": [
+    {
+      "id": "30f55def-fd4d-4391-bcd9-0ed18f939c05",
+      "tipo": "Entrada",
+      "valor": "34123",
+      "descrição": "",
+      "data": "2025-01-08",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "91a0a9f0-e65f-4f42-94fd-b7774ed3dff0",
+      "tipo": "Entrada",
+      "valor": "34123",
+      "descrição": "",
+      "data": "2025-01-08",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "afc4ea73-20a5-4c05-a9fd-520fe37591f5",
+      "tipo": "Entrada",
+      "valor": "34123",
+      "descrição": "",
+      "data": "2025-01-08",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    },
+    {
+      "id": "dbb9945b-4605-469b-b123-9a65c4749781",
+      "tipo": "Entrada",
+      "valor": "34123",
+      "descrição": "",
+      "data": "2025-01-08",
+      "categoria": "Compras",
+      "formadepagamento": "Pix",
+      "observação": ""
+    }
+  ]
+}

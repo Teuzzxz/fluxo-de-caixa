@@ -1,0 +1,33 @@
+{
+  "name": "fluxo-caixa-3",
+  "version": "1.0.0",
+  "main": "electron/main.mjs",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:frontend": "vite",
+    "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron electron/main.mjs",
+    "build": "vite build && electron-builder"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "vite": "^5.3.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "electron": "^32.3.3",
+    "electron-builder": "^24.13.3",
+    "wait-on": "^9.0.3",
+    "concurrently": "^8.2.2"
+  },
+  "build": {
+    "asar": false,
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "backend/**/*"
+    ]
+  }
+}
