@@ -33,7 +33,7 @@ export default function CreateAccount() {
         <button
           className="login-button"
           onClick={() => {
-            fetch(http + "/createaccount", {
+            fetch(http + "/createuser", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

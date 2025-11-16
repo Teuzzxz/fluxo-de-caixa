@@ -3,13 +3,14 @@ import { UserContext } from "../../context/Usercontext"
 import Menssager from "./menssager"
 
 export default function AddFluxo({ onClose, reload }) {
-  const { http } = useContext(UserContext)
+  const { http, usuario } = useContext(UserContext)
   const data = new Date()
   const [date, setdate] = useState(data.toISOString().split("T")[0])
 
   //States das informações abaixo
 
   const [form, setform] = useState({
+    userID: usuario,
     tipo: "Entrada",
     valor: "",
     descrição: "",
@@ -143,8 +144,9 @@ export default function AddFluxo({ onClose, reload }) {
               setTimeout(() => {
                 setcallmenssager([false, ""])
               }, 1500)
+              return
             } else {
-              fetch(http + "/newfluxo", {
+              fetch(http + "/addfluxo", {
                 method: "post",
                 headers: {
                   "Content-Type": "application/json",

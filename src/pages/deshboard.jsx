@@ -32,7 +32,7 @@ export default function Deshboard() {
   const [date, setdate] = useState(data.toISOString().split("T")[0])
   const [dados, setdados] = useState("")
   const [loading, setloading] = useState(true)
-  const { login, setlogin, http } = useContext(UserContext)
+  const { login, setlogin, http, usuario } = useContext(UserContext)
   const [activemodal, setactivemodal] = useState({ screen: "", element: "" })
 
   const color = (e) => ({
@@ -45,7 +45,7 @@ export default function Deshboard() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ date }),
+      body: JSON.stringify({ date, usuario }),
     })
       .then(async (res) => res.json())
       .then(async (res) => {

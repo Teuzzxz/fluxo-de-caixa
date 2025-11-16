@@ -1,29 +1,29 @@
-import { createContext, useState, useEffect, use } from "react"
-
+import { createContext, useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 export const UserContext = createContext()
 
 export function Provider({ children }) {
-  //rota patrao, se alterar altera em todos , mais fácil
-  const http = "https://fluxo-de-caixa.onrender.com"
-  // lista de todos os usuário
-  const [usuarios, setUsuarios] = useState([])
-  // Se está logado
-  const [login, setlogin] = useState(true)
-  //Usuário selecionado
-  const [userselect, setuserselect] = useState("")
+  // const navigate = useNavigate()
+  const http = "http://localhost:4000" //rota patrao, se alterar altera em todos , mais fácil
+  const [usuario, setUsuario] = useState([]) // lista de todos os usuário
+  const [login, setlogin] = useState(false) // Se está logado
+  const [userselect, setuserselect] = useState("") //Usuário selecionado
 
-  // useEffect(() => {
-  //   console.log(login)
-  // }, [login])
+  useEffect(() => {
+    if (!usuario) {
+      setlogin(false)
+    }
+    console.log(usuario)
+  }, [usuario])
 
   return (
     <UserContext.Provider
       value={{
         setlogin,
-        setUsuarios,
+        setUsuario,
         http,
         login,
-        usuarios,
+        usuario,
         userselect,
         setuserselect,
       }}

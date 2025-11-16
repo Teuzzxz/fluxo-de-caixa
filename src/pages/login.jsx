@@ -5,7 +5,7 @@ import "../style/Login.css"
 
 export default function Login() {
   const navigate = useNavigate()
-  const { http, setlogin } = useContext(UserContext)
+  const { http, setlogin, setUsuario } = useContext(UserContext)
 
   const [name, setname] = useState("")
   const [password, setpassword] = useState("")
@@ -39,17 +39,16 @@ export default function Login() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              user: name,
+              name: name,
               password: password,
             }),
           })
-            .then(async (res) => {
-              // Captura o status
-              const status = res.status
-
-              if (status === 200) {
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.status === 200) {
                 console.log("✅ Login realizado com sucesso!")
                 setlogin(true)
+                setUsuario(res.usuario)
                 navigate("/deshboard")
               } else {
                 console.log("Credenciais erradas ou erro!")

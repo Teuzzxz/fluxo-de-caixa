@@ -1,15 +1,14 @@
 import express from "express"
 import cors from "cors"
-import { Low } from "lowdb" // Banco de dados
-import { JSONFile } from "lowdb/node" // Banco de dados
-import { v4 as uuidv4 } from "uuid" // Criador de ID
-import fs from "fs" // Criar pastas
+import mongoose from "mongoose"
+import Users from "./mongodbSchemas/users.js"
+import Fluxo from "./mongodbSchemas/fluxo.js"
+import "dotenv/config"
 
-const PORT = 4000
+// CONFIGURAÇÕES NECESSÁRIAS
 const app = express()
-
+const PORT = 4000
 app.use(express.json())
-
 app.use(
   cors({
     origin: "*",
@@ -18,165 +17,99 @@ app.use(
   })
 )
 
-app.post("/createaccount", async (req, res) => {
-  const info = {
-    id: uuidv4(),
-    ...req.body,
+// Conexão com o banco de dados
+const connection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI)
+    console.log("Conectado ao MongoDB!")
+  } catch (error) {
+    console.log("Erro ao conectar ao banco:")
+    console.log(error)
   }
+}
+connection()
 
-  const adapter = new JSONFile("database/usuarios.json")
-  const db = new Low(adapter, { usuarios: [] })
-  await db.read()
-  db.data.usuarios ||= []
-
-  db.data.usuarios.push(info)
-  await db.write()
-
-  return res.status(200).json({ message: "Deu certo" })
+app.get("/teste", (req, res) => {
+  res.send("daniwdn")
 })
 
-// Rota para fazer login
+app.post("/createuser", async (req, res) => {
+  const { name, password } = req.body
+
+  try {
+    const login = await Users.find({
+      name: name,
+      password: password,
+    })
+    if (login.length > 0) {
+      return res.status(400).send("Usuario ja existe")
+    }
+    const crateUser = await Users.create({ name, password })
+    res.send(crateUser)
+    console.log(crateUser)
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Erro ao buscar")
+  }
+})
+
 app.post("/login", async (req, res) => {
-  const { user, password } = req.body
+  const { name, password } = req.body
+  try {
+    const login = await Users.findOne({
+      name: name,
+      password: password,
+    })
 
-  const adapter = new JSONFile("database/usuarios.json")
-  const db = new Low(adapter, { usuarios: [] })
-  await db.read()
-  db.data.usuarios ||= []
+    if (!login) {
+      return res.status(400).send("Não Encontrado")
+    }
+    const id = login._id.toString()
+    console.log(id)
 
-  const usuario = db.data.usuarios.find((e) => e.name === user)
-
-  if (!usuario) {
-    return res.status(404).json({ message: "Usuário não encontrado!" })
+    return res.json({ usuario: id, status: 200 })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Erro ao buscar")
   }
-
-  if (usuario.password !== password) {
-    return res.status(404).json({ message: "Senha incorreta" })
-  }
-
-  res.status(200).json({ message: "Login realizado com sucesso!" })
-})
-
-// Rota para fazer um novo fluxo
-app.post("/newfluxo", async (req, res) => {
-  const data = req.body.data
-  const year = new Date(data).getFullYear()
-  const mesNumero = new Date(data).getMonth() + 1
-  const mesNome = new Date(data).toLocaleString("pt-BR", { month: "long" })
-
-  const info = {
-    id: uuidv4(),
-    ...req.body,
-  }
-  if (info.tipo === "Entrada") {
-    info.categoria = ""
-  }
-  console.log(info.tipo)
-
-  // Cria o diretório automaticamente, se não existir
-  const dirPath = `database/fluxo/${year}/${mesNome}`
-  fs.mkdirSync(dirPath, { recursive: true })
-
-  //Banco de dados
-  const adapter = new JSONFile(`database/fluxo/${year}/${mesNome}/fluxo.json`)
-  const db = new Low(adapter, { fluxo: [] })
-  await db.read()
-  db.data.fluxo ||= []
-  db.data.fluxo.push(info)
-  await db.write()
-
-  return res.status(200).json({ message: "Fluxo salvo com sucesso!" })
 })
 
 app.post("/getfluxo", async (req, res) => {
+  const { date, usuario } = req.body
+  const ano = String(new Date(date).getFullYear())
+  const mes = new Date(date).toLocaleString("pt-BR", { month: "long" })
+
   try {
-    const data = req.body.date
-    const year = new Date(data).getFullYear()
-    const mesNome = new Date(data).toLocaleString("pt-BR", { month: "long" })
-
-    const adapter = new JSONFile(`database/fluxo/${year}/${mesNome}/fluxo.json`)
-    const db = new Low(adapter, { fluxo: [] })
-    await db.read()
-
-    db.data ||= { fluxo: [] }
-
-    return res.status(200).json(db.data.fluxo)
-  } catch (err) {
-    console.error("Erro ao ler fluxo:", err)
-    return res.status(500).json({ erro: "Falha ao obter dados do fluxo" })
+    const fluxo = await Fluxo.find({
+      mes: mes,
+      ano: ano,
+      userID: usuario,
+    })
+    console.log(fluxo)
+    // console.log(fluxo)
+    return res.json(fluxo)
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Erro")
   }
 })
 
-// Rota para editar o fluxo
-app.post("/editarfluxo", async (req, res) => {
+app.post("/addfluxo", async (req, res) => {
   try {
-    const info = req.body
-    const data = req.body.data
-    const id = req.body.id
-    const year = new Date(data).getFullYear()
-    const mesNome = new Date(data).toLocaleString("pt-BR", { month: "long" })
-
-    const adapter = new JSONFile(`database/fluxo/${year}/${mesNome}/fluxo.json`)
-    const db = new Low(adapter, { fluxo: [] })
-    await db.read()
-    db.data.fluxo ||= []
-
-    // Acha o índice do item a ser editado
-    const index = db.data.fluxo.findIndex((item) => item.id === id)
-
-    if (index === -1) {
-      return res.status(404).json({ error: "Item não encontrado" })
-    }
-
-    //Se for entrada, tira a categoria
-    if (info.tipo === "Entrada") {
-      info.categoria = ""
-    }
-    console.log(info.tipo)
-
-    // Atualiza os dados mantendo o mesmo id
-    db.data.fluxo[index] = { ...db.data.fluxo[index], ...info }
-
-    await db.write()
-
-    return res.status(200).json({ message: "Fluxo atualizado com sucesso!" })
-  } catch (err) {
-    console.error(err)
-    return res.status(500).json({ error: "Erro ao editar o fluxo" })
+    const ano = String(new Date(req.body.data).getFullYear())
+    const mes = new Date(req.body.data).toLocaleString("pt-BR", {
+      month: "long",
+    })
+    req.body.ano = ano
+    req.body.mes = mes
+    const addfluxo = await Fluxo.create(req.body)
+    console.log("Adicionado com sucesso")
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Erro")
   }
 })
 
-// Rota para deletar fluxo
-app.post("/deletefluxo", async (req, res) => {
-  try {
-    const data = req.body.data
-    const id = req.body.id
-    const year = new Date(data).getFullYear()
-    const mesNome = new Date(data).toLocaleString("pt-BR", { month: "long" })
-
-    const adapter = new JSONFile(`database/fluxo/${year}/${mesNome}/fluxo.json`)
-    const db = new Low(adapter, { fluxo: [] })
-    await db.read()
-    db.data.fluxo ||= []
-
-    // Filtra e remove o item com o ID correspondente
-    const fluxoAntes = db.data.fluxo.length
-    db.data.fluxo = db.data.fluxo.filter((item) => item.id !== id)
-
-    console.log(req.body)
-    // Verifica se algo foi realmente removido
-    if (db.data.fluxo.length === fluxoAntes) {
-      return res.status(404).json({ error: "Item não encontrado" })
-    }
-
-    await db.write()
-
-    return res.status(200).json({ message: "Fluxo apagado com sucesso!" })
-  } catch (err) {
-    console.error(err)
-    return res.status(500).json({ error: "Erro ao apagar o fluxo" })
-  }
+app.listen(PORT, () => {
+  console.log("Servidor rodando na porta " + PORT)
 })
-
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
-process.stdin.resume()
