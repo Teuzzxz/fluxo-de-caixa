@@ -4,7 +4,7 @@ export const UserContext = createContext()
 
 export function Provider({ children }) {
   //rota patrao, se alterar altera em todos , mais fácil
-  const http = "https://1fdda8cb800f.ngrok-free.app"
+  const http = "https://fluxo-de-caixa.onrender.com"
   // lista de todos os usuário
   const [usuarios, setUsuarios] = useState([])
   // Se está logado
