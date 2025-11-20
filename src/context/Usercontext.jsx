@@ -5,11 +5,10 @@ export const UserContext = createContext()
 export function Provider({ children }) {
   const render = "https://fluxo-de-caixa-api.onrender.com"
   const localhost = "http://localhost:4000"
-  // const navigate = useNavigate()
-  const http = render //rota patrao, se alterar altera em todos , mais fácil
-  const [usuario, setUsuario] = useState([]) // lista de todos os usuário
-  const [login, setlogin] = useState(false) // Se está logado
-  const [userselect, setuserselect] = useState("") //Usuário selecionado
+  const http = localhost
+  const [usuario, setUsuario] = useState([])
+  const [login, setlogin] = useState(false)
+  const [userselect, setuserselect] = useState("")
 
   useEffect(() => {
     if (!usuario) {
