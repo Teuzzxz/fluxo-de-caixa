@@ -3,7 +3,7 @@ import { HashRouter, Route, Routes, Navigate } from "react-router-dom"
 import Login from "../pages/login"
 import Deshboard from "../pages/deshboard"
 import CreateAccount from "../pages/createaccount"
-import CasaCmg from "../pages/components/secret/casacmg"
+import CasaCmg from "../App/FluxoDeCaixa/secret/casacmg"
 //Rotas protegidas
 import Private from "./privarouter"
 import Logado from "./logado"
