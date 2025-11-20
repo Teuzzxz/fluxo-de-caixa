@@ -8,7 +8,7 @@
     "dev:frontend": "vite",
     "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron electron/main.mjs",
     "build": "vite build && electron-builder",
-    "buildVersion": "electron-builder --publish always"
+    "buildVersion": "electron-builder --publish never"
   },
   "dependencies": {
     "react": "^19.2.0",
