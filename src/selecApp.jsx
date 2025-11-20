@@ -6,7 +6,7 @@ export default function SelectApp() {
   const navigate = useNavigate()
   return (
     <>
-      <h1>OLA {usuario}</h1>
+      <h1>OLA bom dia:{usuario}</h1>
       <button
         onClick={() => {
           sessionStorage.clear()

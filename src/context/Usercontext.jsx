@@ -5,9 +5,8 @@ export const UserContext = createContext()
 export function Provider({ children }) {
   const render = "https://fluxo-de-caixa-api.onrender.com"
   const localhost = "http://localhost:4000"
-  const http = localhost
+  const http = render
   const [usuario, setUsuario] = useState([])
-  // const [login, setlogin] = useState(false)
   const [userselect, setuserselect] = useState("")
 
   useEffect(() => {

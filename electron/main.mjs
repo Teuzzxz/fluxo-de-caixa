@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from "electron"
+const { autoUpdater } = require("electron-updater")
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -23,10 +24,17 @@ function createWindow() {
   } else {
     win.loadFile(path.join(__dirname, "../dist/index.html"))
   }
+
+  return win
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  const win = createWindow()
+
+  // 👉 Só roda auto update em produção
+  if (!isDev) {
+    autoUpdater.checkForUpdatesAndNotify()
+  }
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
