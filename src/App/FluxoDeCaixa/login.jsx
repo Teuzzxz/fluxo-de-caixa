@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../context/Usercontext"
+import { UserContext } from "../../context/Usercontext"
 import Menssager from "./components/menssager"
-import Secret from "./components/secret/secret"
-import "../style/Login.css"
+import "../../style/Login.css"
 
 export default function Login() {
   const navigate = useNavigate()
@@ -14,7 +13,6 @@ export default function Login() {
   const [callmenssager, setcallmenssager] = useState([false, ""])
   return (
     <nav className="login-nav">
-      <Secret />
       <input
         placeholder="User"
         className="login-input"

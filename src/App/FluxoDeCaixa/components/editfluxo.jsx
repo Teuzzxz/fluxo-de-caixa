@@ -1,23 +1,22 @@
 import { useState, useContext, useEffect } from "react"
-import { UserContext } from "../../context/Usercontext"
+import { UserContext } from "../../../context/Usercontext"
 import Menssager from "./menssager"
 
-export default function AddFluxo({ onClose, reload }) {
-  const { http, usuario } = useContext(UserContext)
-  const data = new Date()
-  const [date, setdate] = useState(data.toISOString().split("T")[0])
-
+export default function Editfluxo({ onClose, element, reload }) {
+  const { http } = useContext(UserContext)
   //States das informações abaixo
 
   const [form, setform] = useState({
-    userID: usuario,
-    tipo: "Entrada",
-    valor: "",
-    descrição: "",
-    data: date,
-    categoria: "Compras",
-    formadepagamento: "Pix",
-    observação: "",
+    _id: element._id,
+    userID: element.userID,
+    tipo: element.tipo,
+    valor: element.valor,
+    descrição: element.descrição,
+    data: element.data,
+    categoria: element.categoria,
+    formadepagamento: element.formadepagamento,
+    observação: element.observação,
+    id: element.id,
   })
 
   // função para trocar as infos
@@ -27,11 +26,12 @@ export default function AddFluxo({ onClose, reload }) {
   }
 
   const [callmenssager, setcallmenssager] = useState([false, ""])
+
   return (
     <>
       <div className="addfluxo">
         <div className="addfluxo-title">
-          <h1>Adicionar fluxo</h1>
+          <h1>Editar Fluxo</h1>
           <button
             onClick={() => {
               onClose()
@@ -40,7 +40,9 @@ export default function AddFluxo({ onClose, reload }) {
             ❌
           </button>
         </div>
+
         <div>
+          <p>Tipo / Entrada ou saíada \</p>
           <select
             onChange={(evt) => {
               handlechanger("tipo", evt.target.value)
@@ -111,6 +113,7 @@ export default function AddFluxo({ onClose, reload }) {
             <option value="Saúde">Saúde</option>
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
+            <option value=""></option>
           </select>
         </div>
         <div>
@@ -144,18 +147,16 @@ export default function AddFluxo({ onClose, reload }) {
               setTimeout(() => {
                 setcallmenssager([false, ""])
               }, 1500)
-              return
             } else {
-              fetch(http + "/addfluxo", {
+              fetch(http + "/editarfluxo", {
                 method: "post",
                 headers: {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify(form),
               }).then(async (res) => {
-                console.log(res.ok)
                 if (res.ok) {
-                  setcallmenssager([true, "Fluxo cadastrado com sucesso✅"])
+                  setcallmenssager([true, "Fluxo editado com sucesso✅"])
                   reload()
                   setTimeout(() => {
                     setcallmenssager([false, ""])

@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react"
 
 // Context
-import { UserContext } from "../context/Usercontext"
+import { UserContext } from "../../context/Usercontext"
 
 // Componentes do fluxo
 import AddFluxo from "./components/addfluxo"
@@ -22,10 +22,9 @@ import GraficoResumo from "./components/graphics/SaídaEntradas"
 import EvolucaoDiaria from "./components/graphics/EvoluçãoDiária"
 
 // Easter Egg / secreto
-import Secret from "./components/secret/secret"
 
 // CSS
-import "../style/deshboard.css"
+import "../../style/deshboard.css"
 
 export default function Deshboard() {
   const data = new Date()
@@ -80,7 +79,6 @@ export default function Deshboard() {
   } else {
     return (
       <>
-        <Secret />
         {/* LISTA DOS FLUXOS */}
         <div>
           <header>

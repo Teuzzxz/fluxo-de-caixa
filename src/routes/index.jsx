@@ -1,8 +1,8 @@
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom"
 
-import Login from "../pages/login"
-import Deshboard from "../pages/deshboard"
-import CreateAccount from "../pages/createaccount"
+import Login from "../App/FluxoDeCaixa/login.jsx"
+import Deshboard from "../App/FluxoDeCaixa/deshboard"
+import CreateAccount from "../App/FluxoDeCaixa/components/createaccount.jsx"
 import CasaCmg from "../App/FluxoDeCaixa/secret/casacmg"
 //Rotas protegidas
 import Private from "./privarouter"
