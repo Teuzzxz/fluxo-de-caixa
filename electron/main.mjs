@@ -24,17 +24,10 @@ function createWindow() {
   } else {
     win.loadFile(path.join(__dirname, "../dist/index.html"))
   }
-
-  return win
 }
 
 app.whenReady().then(() => {
-  const win = createWindow()
-
-  // 👉 Só roda auto update em produção
-  if (!isDev) {
-    autoUpdater.checkForUpdatesAndNotify()
-  }
+  createWindow()
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
