@@ -1,13 +1,14 @@
 {
-  "name": "fluxo-caixa-3",
-  "version": "1.0.0",
+  "name": "TeuzzxAPP",
+  "version": "1.0.1",
   "main": "electron/main.mjs",
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm:dev:*\"",
     "dev:frontend": "vite",
     "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron electron/main.mjs",
-    "build": "vite build && electron-builder"
+    "build": "vite build && electron-builder",
+    "buildVersion": "electron-builder --publish always"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -24,7 +25,13 @@
     "wait-on": "^9.0.3"
   },
   "build": {
+    "appId": "com.teuzzx.00",
     "asar": false,
+    "publish": {
+      "provider": "github",
+      "owner": "Teuzzxz",
+      "repo": "fluxo-de-caixa"
+    },
     "files": [
       "dist/**/*",
       "electron/**/*",
