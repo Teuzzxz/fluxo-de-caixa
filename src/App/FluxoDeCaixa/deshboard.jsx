@@ -1,5 +1,6 @@
 // React e hooks
 import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 // Context
 import { UserContext } from "../../context/Usercontext"
@@ -27,11 +28,14 @@ import EvolucaoDiaria from "./components/graphics/EvoluçãoDiária"
 import "../../style/deshboard.css"
 
 export default function Deshboard() {
+  const userssesion = sessionStorage.getItem("user")
+
+  const navigate = useNavigate()
   const data = new Date()
   const [date, setdate] = useState(data.toISOString().split("T")[0])
   const [dados, setdados] = useState("")
   const [loading, setloading] = useState(true)
-  const { login, setlogin, http, usuario } = useContext(UserContext)
+  const { http, usuario } = useContext(UserContext)
   const [activemodal, setactivemodal] = useState({ screen: "", element: "" })
 
   const color = (e) => ({
@@ -44,7 +48,7 @@ export default function Deshboard() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ date, usuario }),
+      body: JSON.stringify({ date, usuario: userssesion }),
     })
       .then(async (res) => res.json())
       .then(async (res) => {
@@ -73,7 +77,6 @@ export default function Deshboard() {
 
     setdate(`${anoNovo}-${mesNovo}-${diaNovo}`)
   }
-
   if (loading) {
     return <h1>Carregando</h1>
   } else {
@@ -84,7 +87,7 @@ export default function Deshboard() {
           <header>
             <button
               onClick={() => {
-                setlogin(false)
+                navigate("/selectApp")
               }}
             >
               Logout

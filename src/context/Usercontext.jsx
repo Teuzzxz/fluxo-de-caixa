@@ -7,23 +7,20 @@ export function Provider({ children }) {
   const localhost = "http://localhost:4000"
   const http = localhost
   const [usuario, setUsuario] = useState([])
-  const [login, setlogin] = useState(false)
+  // const [login, setlogin] = useState(false)
   const [userselect, setuserselect] = useState("")
 
   useEffect(() => {
     if (!usuario) {
       setlogin(false)
     }
-    console.log(usuario)
   }, [usuario])
 
   return (
     <UserContext.Provider
       value={{
-        setlogin,
         setUsuario,
         http,
-        login,
         usuario,
         userselect,
         setuserselect,

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../../context/Usercontext"
-import Menssager from "./components/menssager"
-import "../../style/Login.css"
+import { UserContext } from "./context/Usercontext.jsx"
+import Menssager from "./App/FluxoDeCaixa/components/menssager"
+import "./style/Login.css"
 
 export default function Login() {
   const navigate = useNavigate()
-  const { http, setlogin, setUsuario } = useContext(UserContext)
+  const { http, setUsuario } = useContext(UserContext)
 
   const [name, setname] = useState("")
   const [password, setpassword] = useState("")
@@ -49,9 +49,10 @@ export default function Login() {
             .then((res) => {
               if (res.status === 200) {
                 console.log("✅ Login realizado com sucesso!")
-                setlogin(true)
                 setUsuario(res.usuario)
-                navigate("/deshboard")
+                sessionStorage.setItem("user", res.usuario)
+                sessionStorage.setItem("auth", "true")
+                navigate("/selectApp")
                 setcallmenssager([false, ""])
               } else {
                 console.log("Credenciais erradas ou erro!")
