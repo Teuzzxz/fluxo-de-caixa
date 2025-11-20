@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from "electron"
-const { autoUpdater } = require("electron-updater")
 import path from "path"
 import { fileURLToPath } from "url"
 
