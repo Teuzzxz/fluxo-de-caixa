@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm:dev:*\"",
     "dev:frontend": "vite",
     "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron electron/main.mjs",
-    "build": "vite build && electron-builder",
+    "build": "vite build && electron-builder -publish never",
     "buildVersion": "electron-builder --publish never"
   },
   "dependencies": {
