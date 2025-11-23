@@ -21,8 +21,7 @@ export default function PizzaSaídas({ dados }) {
   const COLORS = ["#ff6b6b", "#feca57", "#1dd1a1", "#54a0ff", "#5f27cd"]
 
   return (
-    <div>
-      <h2>🥧 Gastos por Categoria</h2>
+    <div className="Grafico-pizza Grafico">
       <PieChart width={400} height={300}>
         <Pie
           data={data}

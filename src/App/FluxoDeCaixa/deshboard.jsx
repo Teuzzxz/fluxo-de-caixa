@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom"
 // Context
 import { UserContext } from "../../context/Usercontext"
 
+// Componentes pricipal
+import Header from "./header"
+
 // Componentes do fluxo
 import AddFluxo from "./components/addfluxo"
 import Editfluxo from "./components/editfluxo"
@@ -15,14 +18,11 @@ import Entradas from "./components/resumoEntradas"
 import Saídas from "./components/resumoSaídas"
 import Maiorgasto from "./components/resumoMaiorgasto"
 import Categorias from "./components/resumoCategorias"
-import CategoriaMaisCara from "./components/resumoCategoria+"
 
 // Gráficos
 import PizzaSaídas from "./components/graphics/pizzaSaída"
 import GraficoResumo from "./components/graphics/SaídaEntradas"
 import EvolucaoDiaria from "./components/graphics/EvoluçãoDiária"
-
-// Easter Egg / secreto
 
 // CSS
 import "../../style/deshboard.css"
@@ -84,15 +84,7 @@ export default function Deshboard() {
       <>
         {/* LISTA DOS FLUXOS */}
         <div>
-          <header>
-            <button
-              onClick={() => {
-                navigate("/selectApp")
-              }}
-            >
-              Logout
-            </button>
-          </header>
+          <Header />
 
           <div className="deshbord-div-botoes-mes">
             <button
@@ -126,7 +118,7 @@ export default function Deshboard() {
                 setactivemodal((prev) => ({ ...prev, screen: "new" }))
               }}
             >
-              Adicionar fluxo ➕
+              Adicionar fluxo
             </button>
             <button
               className="deshbord-button-add-rec"
@@ -194,45 +186,35 @@ export default function Deshboard() {
             <div className="deshboard-resumo">
               <h1>RESUMO</h1>
               <h2>
-                💰 Entradas: R$ <span>{Entradas(dados) || 0}</span>
+                💰 Entradas: <span> {Entradas(dados) || 0}</span>
               </h2>
               <h2>
-                💸 Saídas: R$ <span>{Saídas(dados) || 0}</span>
+                💸 Saídas: <span> {Saídas(dados) || 0}</span>
               </h2>
               <h2>
-                🧾 Saldo: R$ <span>{Entradas(dados) - Saídas(dados) || 0}</span>
+                🧾 Saldo: <span> {Entradas(dados) - Saídas(dados) || 0}</span>
               </h2>
               <h2>
-                📅 Despesas médias diárias:
-                <span>R$ {parseInt(Saídas(dados) / 30) || 0}</span>
+                📅 Despesas médias diárias: {""}
+                <span> {parseInt(Saídas(dados) / 30) || 0}</span>
               </h2>
               <h2>
-                💥 Maior gasto:
-                <span>R$ {Maiorgasto(dados) || 0}</span>
+                💥 Maior gasto: {""}
+                <span> {Maiorgasto(dados) || 0}</span>
               </h2>
               <h2>
                 📊 Gasto por categoria:
-                <span>
+                <span style={{ textAlign: "center" }}>
                   {Categorias(dados) && Categorias(dados).length > 0 ? (
                     Categorias(dados).map((e, i) => (
-                      <p key={i}>
-                        R$ {e.categoria}: {e.total}
-                      </p>
+                      <h4 key={i} style={{ fontWeight: "lighter" }}>
+                        {e.categoria}: <span> {e.total}</span>
+                      </h4>
                     ))
                   ) : (
                     <p></p>
                   )}
                 </span>
-              </h2>
-              <h2>
-                🏷️ Categoria Mais Cara :
-                <p>
-                  {CategoriaMaisCara(dados)
-                    ? `${CategoriaMaisCara(dados).categoria}  ${
-                        CategoriaMaisCara(dados).total
-                      }`
-                    : ""}
-                </p>
               </h2>
             </div>
           </div>
@@ -256,9 +238,12 @@ export default function Deshboard() {
           />
         )}
         {/* ----------------------------------------------GRAFICOS----------------------------------------------------- */}
-        <PizzaSaídas dados={dados} />
-        {/* <GraficoResumo dados={dados} />
-        <EvolucaoDiaria dados={dados} /> */}
+        <div className="Graficos">
+          <PizzaSaídas dados={dados} />
+          <GraficoResumo dados={dados} />
+        </div>
+
+        <EvolucaoDiaria dados={dados} />
       </>
     )
   }

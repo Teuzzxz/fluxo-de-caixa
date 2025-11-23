@@ -5,24 +5,21 @@ export const UserContext = createContext()
 export function Provider({ children }) {
   const render = "https://fluxo-de-caixa-api.onrender.com"
   const localhost = "http://localhost:4000"
-  const http = render
-  const [usuario, setUsuario] = useState([])
-  const [userselect, setuserselect] = useState("")
+  const http = localhost
+  const [photo, setphoto] = useState("")
 
   useEffect(() => {
-    if (!usuario) {
-      setlogin(false)
+    if (photo) {
+      sessionStorage.setItem("photo", photo)
     }
-  }, [usuario])
+  }, [photo])
 
   return (
     <UserContext.Provider
       value={{
-        setUsuario,
         http,
-        usuario,
-        userselect,
-        setuserselect,
+        photo,
+        setphoto,
       }}
     >
       {children}

@@ -1,51 +1,95 @@
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
   Tooltip,
-  ResponsiveContainer,
-} from "recharts"
+  Filler,
+} from "chart.js"
+import { Line } from "react-chartjs-2"
+import { useMemo } from "react"
 
-export default function EvolucaoDiaria({ dados }) {
-  const agrupadoPorDia = {}
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Filler
+)
 
-  // 🔹 Soma entradas e saídas por data
-  dados.forEach((item) => {
-    const dia = item.data
-    const valor = Number(item.valor)
-    const tipo = item.tipo
+export default function FluxoAcumulado({ dados }) {
+  const { labels, valores, segmentColors } = useMemo(() => {
+    // Agrupar por dia
+    const agrupado = {}
 
-    if (!agrupadoPorDia[dia]) agrupadoPorDia[dia] = { entradas: 0, saidas: 0 }
+    dados.forEach((item) => {
+      const dia = item.data
+      const valor = Number(item.valor)
+      const tipo = item.tipo
 
-    if (tipo === "Entrada") agrupadoPorDia[dia].entradas += valor
-    else if (tipo === "Saída") agrupadoPorDia[dia].saidas += valor
-  })
+      if (!agrupado[dia]) agrupado[dia] = 0
 
-  // 🔹 Converte pra array e ordena
-  const dadosPorDia = Object.entries(agrupadoPorDia)
-    .map(([data, valores]) => ({
-      data,
-      ...valores,
-    }))
-    .sort((a, b) => new Date(a.data) - new Date(b.data))
+      if (tipo === "Entrada") agrupado[dia] += valor
+      else if (tipo === "Saída") agrupado[dia] -= valor
+    })
+
+    // Ordenar dias
+    const ordenar = Object.entries(agrupado).sort(
+      (a, b) => new Date(a[0]) - new Date(b[0])
+    )
+
+    const labels = ordenar.map(([d]) => d)
+
+    // Criar curva acumulada
+    let acumulado = 0
+    const valores = ordenar.map(([_, v]) => {
+      acumulado += v
+      return acumulado
+    })
+
+    // Cores dinâmicas entre pontos
+    const segmentColors = (ctx) => {
+      const i = ctx.p0DataIndex
+      const subiu = valores[i + 1] > valores[i]
+      return subiu ? "#22c55e" : "#ef4444" // verde / vermelho
+    }
+
+    return { labels, valores, segmentColors }
+  }, [dados])
+
+  const chartData = {
+    labels,
+    datasets: [
+      {
+        label: "Fluxo Acumulado",
+        data: valores,
+        borderWidth: 2,
+        pointRadius: 0,
+        fill: false,
+        segment: {
+          borderColor: segmentColors,
+        },
+      },
+    ],
+  }
+
+  const options = {
+    responsive: true,
+    tension: 0.3,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
+    plugins: {
+      legend: { display: false },
+    },
+  }
 
   return (
-    <div>
-      <h2 className="text-lg font-semibold mb-2">
-        📉 Evolução Diária (Entradas e Saídas)
-      </h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={dadosPorDia}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="data" />
-          <YAxis />
-          <Tooltip />
-          <Line type="monotone" dataKey="entradas" stroke="#22c55e" />
-          <Line type="monotone" dataKey="saidas" stroke="#ef4444" />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="Grafico">
+      <Line data={chartData} options={options} height={100} />
     </div>
   )
 }

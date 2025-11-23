@@ -24,15 +24,14 @@ export default function GraficoResumo({ dados }) {
   ]
 
   return (
-    <div>
-      <h2>📊 Entradas vs Saídas</h2>
+    <div className="Grafico">
       <BarChart width={400} height={300} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="valor" fill="#00b894" />
+        <Bar dataKey="valor" fill="#8f9796ff" />
       </BarChart>
     </div>
   )

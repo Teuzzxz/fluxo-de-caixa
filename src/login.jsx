@@ -6,8 +6,7 @@ import "./style/Login.css"
 
 export default function Login() {
   const navigate = useNavigate()
-  const { http, setUsuario } = useContext(UserContext)
-
+  const { http, photo, setphoto } = useContext(UserContext)
   const [name, setname] = useState("")
   const [password, setpassword] = useState("")
   const [callmenssager, setcallmenssager] = useState([false, ""])
@@ -34,37 +33,47 @@ export default function Login() {
       <button
         className="login-button"
         onClick={() => {
-          setcallmenssager([true, "Carregando"])
-          fetch(http + "/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: name,
-              password: password,
-            }),
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              if (res.status === 200) {
-                console.log("✅ Login realizado com sucesso!")
-                setUsuario(res.usuario)
-                sessionStorage.setItem("user", res.usuario)
-                sessionStorage.setItem("auth", "true")
-                navigate("/selectApp")
-                setcallmenssager([false, ""])
-              } else {
-                console.log("Credenciais erradas ou erro!")
-                setcallmenssager([true, "Credenciais erradas ou erro"])
-                setTimeout(() => {
+          if (name !== "" && password !== "") {
+            setcallmenssager([true, "Carregando"])
+            fetch(http + "/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name: name,
+                password: password,
+              }),
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                if (res.status) {
+                  console.log("✅ Login realizado com sucesso!")
+
+                  sessionStorage.setItem("user", res.usuario)
+                  sessionStorage.setItem("auth", "true")
+                  sessionStorage.setItem("userName", name)
+                  sessionStorage.setItem("photo", res.photo)
+                  setphoto(res.photo)
+
+                  navigate("/selectApp")
                   setcallmenssager([false, ""])
-                }, 1500)
-              }
-            })
-            .catch((err) => {
-              console.error("Erro na requisição:", err)
-            })
+                } else if (!res.status) {
+                  setpassword("")
+                  setname("")
+                  console.log("Credenciais erradas ou erro!")
+                  setcallmenssager([true, "Credenciais erradas ou erro"])
+                  setTimeout(() => {
+                    setcallmenssager([false, ""])
+                  }, 1500)
+                }
+              })
+          } else {
+            setcallmenssager([true, "Faltam informações"])
+            setTimeout(() => {
+              setcallmenssager([false, ""])
+            }, 1500)
+          }
         }}
       >
         Entrar
@@ -80,7 +89,7 @@ export default function Login() {
           Criar conta
         </span>
       </p>
-      {callmenssager[0] && <Menssager menssager="Carregando" />}
+      {callmenssager[0] && <Menssager menssager={callmenssager[1]} />}
     </nav>
   )
 }

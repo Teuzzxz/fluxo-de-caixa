@@ -1,12 +1,10 @@
-import { UserContext } from "./context/Usercontext"
-import { useContext, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 export default function SelectApp() {
-  const { usuario } = useContext(UserContext)
+  const user = sessionStorage.getItem("userName")
   const navigate = useNavigate()
   return (
     <>
-      <h1>OLA bom dia:{usuario}</h1>
+      <h1>OLA bom dia:{user}</h1>
       <button
         onClick={() => {
           sessionStorage.clear()
