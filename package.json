@@ -1,45 +1,52 @@
 {
-  "name": "TeuzzxAPP",
-  "version": "1.0.2",
-  "main": "electron/main.mjs",
-  "type": "module",
-  "scripts": {
-    "dev": "concurrently \"npm:dev:*\"",
-    "dev:frontend": "vite",
-    "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron electron/main.mjs",
-    "build": "vite build && electron-builder",
-    "buildVersion": "electron-builder "
-  },
-  "dependencies": {
-    "chart.js": "^4.5.1",
-    "cross-env": "^10.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "react": "^19.2.0",
-    "react-chartjs-2": "^5.3.1",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.5",
-    "recharts": "^3.4.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^5.1.1",
-    "concurrently": "^8.2.2",
-    "electron": "^32.3.3",
-    "electron-builder": "^24.13.3",
-    "vite": "^5.3.3",
-    "wait-on": "^9.0.3"
-  },
-  "build": {
-    "appId": "com.teuzzx.00",
-    "asar": false,
-    "publish": {
-      "provider": "github",
-      "owner": "Teuzzxz",
-      "repo": "fluxo-de-caixa"
-    },
-    "files": [
-      "dist/**/*",
-      "electron/**/*",
-      "backend/**/*"
-    ]
-  }
+   "name": "Backroom",
+   "version": "2.0.0",
+   "main": "electron/main.mjs",
+   "type": "module",
+   "scripts": {
+      "dev": "concurrently \"npm:dev:*\"",
+      "dev:frontend": "vite",
+      "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development electron electron/main.mjs",
+      "build": "vite build && electron-builder",
+      "buildVersion": "electron-builder "
+   },
+   "dependencies": {
+      "chart.js": "^4.5.1",
+      "cross-env": "^10.1.0",
+      "jsonwebtoken": "^9.0.2",
+      "react": "^19.2.0",
+      "react-chartjs-2": "^5.3.1",
+      "react-dom": "^19.2.0",
+      "react-router-dom": "^7.9.5",
+      "recharts": "^3.4.1"
+   },
+   "devDependencies": {
+      "@vitejs/plugin-react": "^5.1.1",
+      "concurrently": "^8.2.2",
+      "electron": "^32.3.3",
+      "electron-builder": "^24.13.3",
+      "vite": "^5.3.3",
+      "wait-on": "^9.0.3"
+   },
+   "build": {
+      "appId": "com.backroom.00",
+      "productName": "Backroom",
+      "directories": {
+         "buildResources": "electron/build"
+      },
+      "win": {
+         "icon": "electron/build/backroom_icon.ico"
+      },
+      "asar": false,
+      "publish": {
+         "provider": "github",
+         "owner": "Teuzzxz",
+         "repo": "fluxo-de-caixa"
+      },
+      "files": [
+         "dist/**/*",
+         "electron/**/*",
+         "backend/**/*"
+      ]
+   }
 }
