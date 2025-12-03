@@ -4,12 +4,14 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import Rotas from "./routes/index.jsx"
 import { Provider } from "./context/Usercontext.jsx"
+
 import "./style/main.css"
+import "./style/mensagem.css"
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Provider>
-      <Rotas />
-    </Provider>
-  </StrictMode>
+   <StrictMode>
+      <Provider>
+         <Rotas />
+      </Provider>
+   </StrictMode>
 )

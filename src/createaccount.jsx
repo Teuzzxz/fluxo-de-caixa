@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "./context/Usercontext.jsx"
+import { UserContext } from "./context/Usercontext"
 import Menssager from "./components/menssager.jsx"
-import "./style/Login.css"
 
-export default function Login() {
+export default function CreateAccount() {
+   const { http } = useContext(UserContext)
+
    const navigate = useNavigate()
-   const { http, photo, setphoto } = useContext(UserContext)
+
    const [name, setname] = useState("")
    const [password, setpassword] = useState("")
    const [callmenssager, setcallmenssager] = useState([false, ""])
+
    return (
       <>
          <nav className="login-nav">
@@ -34,18 +36,21 @@ export default function Login() {
             <button
                className="login-button"
                onClick={() => {
-                  setcallmenssager([true, "Carregando"])
+                  // if (name === "" || password === "") {
+                  //    setcallmenssager([true, "Faltam informações"])
+                  //    setTimeout(() => {
+                  //       setcallmenssager([false, ""])
+                  //    }, 1500)
+                  //    return
+                  // }
                   try {
                      const FetchAPI = async () => {
-                        const response = await fetch(http + "/auth/login", {
+                        const response = await fetch(http + "/auth/register", {
                            method: "POST",
                            headers: {
                               "Content-Type": "application/json",
                            },
-                           body: JSON.stringify({
-                              email: name,
-                              password: password,
-                           }),
+                           body: JSON.stringify({ email: name, password: password }),
                            credentials: "include",
                         })
                         const res = await response.json()
@@ -55,16 +60,16 @@ export default function Login() {
                            setcallmenssager([true, res.menssager])
                            setTimeout(() => {
                               setcallmenssager([false, ""])
-                           }, 1500)
+                           }, 2000)
                            return
                         }
                         if (res.ok) {
-                           console.log("✅ Login realizado com sucesso!")
+                           console.log("✅ Conta criada com sucesso!")
                            navigate("/selectApp")
                            setcallmenssager([false, res.menssager])
                            setTimeout(() => {
                               setcallmenssager([false, ""])
-                           }, 1500)
+                           }, 2000)
                            return
                         }
                      }
@@ -74,21 +79,21 @@ export default function Login() {
                   }
                }}
             >
-               Entrar
+               Criar conta
             </button>
             <p>
-               Não tem conta?
+               Já tem uma conta?
                <span
                   onClick={() => {
-                     navigate("/CreateAccount")
+                     navigate("/")
                   }}
                   style={{ cursor: "pointer", color: "blue" }}
                >
-                  Criar conta
+                  Entrar
                </span>
             </p>
+            {callmenssager[0] && <Menssager menssager={callmenssager[1]} />}
          </nav>
-         {callmenssager[0] && <Menssager menssager={callmenssager[1]} />}
       </>
    )
 }
