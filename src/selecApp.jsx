@@ -4,11 +4,9 @@ import { UserContext } from "./context/Usercontext.jsx"
 
 export default function SelectApp() {
    const { http } = useContext(UserContext)
-   const user = sessionStorage.getItem("userName")
    const navigate = useNavigate()
    return (
       <>
-         <h1>OLA bom dia:{user}</h1>
          <button
             onClick={() => {
                const Logout = async () => {
@@ -36,11 +34,17 @@ export default function SelectApp() {
          </button>
          <button
             onClick={() => {
-               navigate("/Deshboard-FluxoDeCaixa")
+               navigate("/FluxoDeCaixa-Deshboard")
             }}
          >
-            {" "}
             FLUXO DE CAIXA
+         </button>
+         <button
+            onClick={() => {
+               navigate("/Treinos-Deshboard")
+            }}
+         >
+            Treinos
          </button>
       </>
    )

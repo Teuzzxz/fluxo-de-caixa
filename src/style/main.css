@@ -1,117 +1,109 @@
 :root {
-  /* ===== Base ===== */
-  --color-bg: #f6f6f6;
-  --color-bg-card: #ffffff;
-  --color-bg-hover: #ededed;
+   /* ===== Base ===== */
+   --color-bg: #f6f6f6;
+   --color-bg-card: #ffffff;
+   --color-bg-hover: #ededed;
 
-  --color-text: #1a1a1a;
-  --color-text-secondary: #6a6a6a;
-  --color-border: #d8d8d8;
+   --color-text: #1a1a1a;
+   --color-text-secondary: #6a6a6a;
+   --color-border: #d8d8d8;
 
-  /* ===== Tons de cinza (principais) ===== */
-  --gray-100: #f0f0f0;
-  --gray-200: #e0e0e0;
-  --gray-300: #cfcfcf;
-  --gray-400: #b0b0b0;
-  --gray-500: #8e8e8e;
-  --gray-600: #6e6e6e;
-  --gray-700: #4a4a4a;
-  --gray-800: #2e2e2e;
-  --gray-900: #1a1a1a;
+   /* ===== Tons de cinza (principais) ===== */
+   --gray-100: #f0f0f0;
+   --gray-200: #e0e0e0;
+   --gray-300: #cfcfcf;
+   --gray-400: #b0b0b0;
+   --gray-500: #8e8e8e;
+   --gray-600: #6e6e6e;
+   --gray-700: #4a4a4a;
+   --gray-800: #2e2e2e;
+   --gray-900: #1a1a1a;
 
-  /* ===== Botões ===== */
-  --btn-primary-bg: #3a3a3a;
-  --btn-primary-text: #ffffff;
-  --btn-primary-hover: #2e2e2e;
-  --btn-blue: #539aef;
+   /* ===== Botões ===== */
+   --btn-primary-bg: #3a3a3a;
+   --btn-primary-text: #ffffff;
+   --btn-primary-hover: #2e2e2e;
+   --btn-blue: #539aef;
 
-  --btn-secondary-bg: #e0e0e0;
-  --btn-secondary-text: #1a1a1a;
-  --btn-secondary-hover: #cfcfcf;
+   --btn-secondary-bg: #e0e0e0;
+   --btn-secondary-text: #1a1a1a;
+   --btn-secondary-hover: #cfcfcf;
 
-  --btn-outline-bg: transparent;
-  --btn-outline-border: #3a3a3a;
-  --btn-outline-text: #3a3a3a;
-  --btn-outline-hover: rgba(0, 0, 0, 0.06);
+   --btn-outline-bg: transparent;
+   --btn-outline-border: #3a3a3a;
+   --btn-outline-text: #3a3a3a;
+   --btn-outline-hover: rgba(0, 0, 0, 0.06);
 
-  --color-income: #4a4a4a; /* positivo (neutro escuro) */
-  --color-expense: #7a7a7a; /* negativo (cinza médio)  */
-  --color-balance: #2e2e2e; /* saldo */
+   --color-income: #4a4a4a; /* positivo (neutro escuro) */
+   --color-expense: #7a7a7a; /* negativo (cinza médio)  */
+   --color-balance: #2e2e2e; /* saldo */
 
-  /* ===== Bordas e sombras ===== */
-  --shadow-soft: 0px 2px 8px rgba(0, 0, 0, 0.05);
-  --radius: 8px;
+   /* ===== Bordas e sombras ===== */
+   --shadow-soft: 0px 2px 8px rgba(0, 0, 0, 0.05);
+   --radius: 8px;
 }
 
 /* ===== Tema Dark ===== */
 [data-theme="dark"] {
-  --color-bg: #121212;
-  --color-bg-card: #1a1a1a;
-  --color-bg-hover: #2a2a2a;
+   --color-bg: #121212;
+   --color-bg-card: #1a1a1a;
+   --color-bg-hover: #2a2a2a;
 
-  --color-text: #eaeaea;
-  --color-text-secondary: #b8b8b8;
-  --color-border: #2e2e2e;
+   --color-text: #eaeaea;
+   --color-text-secondary: #b8b8b8;
+   --color-border: #2e2e2e;
 
-  --btn-primary-bg: #eaeaea;
-  --btn-primary-text: #1a1a1a;
-  --btn-primary-hover: #cecece;
+   --btn-primary-bg: #eaeaea;
+   --btn-primary-text: #1a1a1a;
+   --btn-primary-hover: #cecece;
 
-  --chart-balance: #d1d1d1;
+   --chart-balance: #d1d1d1;
 }
 
 /* ===== Tema Dark (auto) ===== */
 [data-theme="dark"] {
-  --color-bg: #1e1f25;
-  --color-bg-card: #2a2b31;
-  --color-bg-hover: #35363d;
+   --color-bg: #1e1f25;
+   --color-bg-card: #2a2b31;
+   --color-bg-hover: #35363d;
 
-  --color-text: #ffffff;
-  --color-text-secondary: #d1d1d6;
-  --color-border: #3d3e45;
+   --color-text: #ffffff;
+   --color-text-secondary: #d1d1d6;
+   --color-border: #3d3e45;
 
-  --btn-primary-text: #ffffff;
-  --btn-secondary-text: #ffffff;
-  --btn-success-text: #ffffff;
-  --btn-danger-text: #ffffff;
+   --btn-primary-text: #ffffff;
+   --btn-secondary-text: #ffffff;
+   --btn-success-text: #ffffff;
+   --btn-danger-text: #ffffff;
 
-  /* Ajuste dos gráficos no dark */
-  --chart-balance: #4a9aff;
+   /* Ajuste dos gráficos no dark */
+   --chart-balance: #4a9aff;
 }
 
 body {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  height: 100%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  overflow-x: hidden;
+   overflow-x: hidden;
 }
 #root {
-  height: 100vh;
-  width: 100vw;
-  background-color: var(--gray-800);
+   background-color: var(--gray-800);
+   height: 100vh;
 }
 * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+   margin: 0px;
+   padding: 0px;
+   box-sizing: border-box;
+   font-family: arial, sans-serif;
 }
 
 button {
-  border: 1px solid black;
-  background-color: rgba(0, 255, 255, 0);
-  border-radius: 5px;
-  color: white;
-  font-size: 1em;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  line-height: 10px;
-  transition: 0.3s;
+   border: none;
+   background-color: rgba(0, 255, 255, 0);
+   border-radius: 2px;
+   color: white;
+   font-size: 1em;
+   font-family: "Poppins", sans-serif;
+   text-align: center;
+   line-height: 10px;
+   transition: 0.3s;
 }
 button:hover {
-  background-color: var(--btn-outline-border);
+   background-color: var(--btn-outline-border);
 }

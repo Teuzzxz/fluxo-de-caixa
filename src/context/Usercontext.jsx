@@ -18,8 +18,6 @@ export function Provider({ children }) {
       <UserContext.Provider
          value={{
             http,
-            photo,
-            setphoto,
          }}
       >
          {children}

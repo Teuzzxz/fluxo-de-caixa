@@ -10,8 +10,7 @@ export default function AddFluxo({ onClose, reload }) {
    //States das informações abaixo
 
    const [form, setform] = useState({
-      userID: usuario,
-      tipo: "Entrada",
+      tipo: "Saída",
       valor: "",
       descrição: "",
       data: date,
@@ -19,6 +18,51 @@ export default function AddFluxo({ onClose, reload }) {
       formadepagamento: "Pix",
       observação: "",
    })
+
+   const FetchAPI = async () => {
+      if (form.valor === "" || form.data === "") {
+         setcallmenssager([true, "Valor/Data nao definido❌"])
+         setTimeout(() => {
+            setcallmenssager([false, ""])
+         }, 1500)
+         return
+      }
+
+      const response = await fetch(http + "/fluxo/add", {
+         method: "post",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         credentials: "include",
+         body: JSON.stringify(form),
+      })
+
+      const res = await response.json()
+
+      if (res.ok) {
+         setcallmenssager([true, "Fluxo adicionado com sucesso✅"])
+         setTimeout(() => {
+            setcallmenssager([false, ""])
+         }, 1500)
+         setform((prev) => ({
+            ...prev,
+            tipo: "Saída",
+            valor: "",
+            descrição: "",
+            categoria: "Compras",
+            formadepagamento: "Pix",
+            observação: "",
+         }))
+         reload()
+      }
+
+      if (!res.ok) {
+         setcallmenssager([true, "Erro!"])
+         setTimeout(() => {
+            setcallmenssager([false, ""])
+         }, 1500)
+      }
+   }
 
    // função para trocar as infos
 
@@ -29,8 +73,8 @@ export default function AddFluxo({ onClose, reload }) {
    const [callmenssager, setcallmenssager] = useState([false, ""])
    return (
       <>
-         <div className="addfluxo">
-            <div className="addfluxo-title">
+         <div className="FDC-add-editFluxo">
+            <div className="FDC-add-editFluxo-title">
                <h1>Adicionar fluxo</h1>
                <button
                   onClick={() => {
@@ -40,8 +84,23 @@ export default function AddFluxo({ onClose, reload }) {
                   ❌
                </button>
             </div>
-            <div>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="DATE">Data:</label>
+               <input
+                  id="DATE"
+                  type="date"
+                  value={form.data}
+                  onChange={(evt) => {
+                     handlechanger("data", evt.target.value)
+                  }}
+               />
+            </div>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="TIPO">Tipo:</label>
                <select
+                  id="TIPO"
                   onChange={(evt) => {
                      handlechanger("tipo", evt.target.value)
                   }}
@@ -51,9 +110,11 @@ export default function AddFluxo({ onClose, reload }) {
                   <option value="Saída">Saída</option>
                </select>
             </div>
-            <div>
-               <p>Valor</p>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="VALOR">Valor:</label>
                <input
+                  id="VALOR"
                   type="number"
                   value={form.valor}
                   onChange={(evt) => {
@@ -61,9 +122,11 @@ export default function AddFluxo({ onClose, reload }) {
                   }}
                />
             </div>
-            <div>
-               <p>Descrição</p>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="DESCRICAO">Descrição :</label>
                <input
+                  id="DESCRICAO"
                   type="text"
                   value={form.descrição}
                   onChange={(evt) => {
@@ -71,19 +134,11 @@ export default function AddFluxo({ onClose, reload }) {
                   }}
                />
             </div>
-            <div>
-               <p>Data</p>
-               <input
-                  type="date"
-                  value={form.data}
-                  onChange={(evt) => {
-                     handlechanger("data", evt.target.value)
-                  }}
-               />
-            </div>
-            <div>
-               <p>Categoria</p>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="CATEGORIA">Categoria:</label>
                <select
+                  id="CATEGORIA"
                   value={form.categoria}
                   onChange={(evt) => {
                      handlechanger("categoria", evt.target.value)
@@ -107,9 +162,11 @@ export default function AddFluxo({ onClose, reload }) {
                   <option value="Lazer">Lazer</option>
                </select>
             </div>
-            <div>
-               <p>Forma de pagamento</p>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="FORMADEPAGAMENTO">Forma de pagamento:</label>
                <select
+                  id="FORMADEPAGAMENTO"
                   value={form.formadepagamento}
                   onChange={(evt) => {
                      handlechanger("formadepagamento", evt.target.value)
@@ -121,9 +178,11 @@ export default function AddFluxo({ onClose, reload }) {
                   <option value="Parcelado">Parcelado</option>
                </select>
             </div>
-            <div>
-               <p>Observação</p>
+
+            <div className="FDC-add-editFluxo-divs">
+               <label htmlFor="OBSERVACAO">observação:</label>
                <input
+                  id="OBSERVACAO"
                   type="text"
                   value={form.observação}
                   onChange={(evt) => {
@@ -131,48 +190,18 @@ export default function AddFluxo({ onClose, reload }) {
                   }}
                />
             </div>
-            <button
-               onClick={() => {
-                  if (form.valor === "" || form.data === "") {
-                     setcallmenssager([true, "Valor/Data nao definido❌"])
-                     setTimeout(() => {
-                        setcallmenssager([false, ""])
-                     }, 1500)
-                     return
-                  }
-                  const FetchAPI = async () => {
-                     console.log("response")
-                     const response = await fetch(http + "/fluxo/add", {
-                        method: "post",
-                        headers: {
-                           "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                        body: JSON.stringify(form),
-                     })
 
-                     const res = await response.json()
+            <div className="FDC-add-editFluxo-div-button-enviar ">
+               <button
+                  className="FDC-add-editFluxo-button-enviar"
+                  onClick={() => {
+                     FetchAPI()
+                  }}
+               >
+                  Enviar
+               </button>
+            </div>
 
-                     if (res.ok) {
-                        setcallmenssager([true, "Fluxo adicionado com sucesso✅"])
-                        setTimeout(() => {
-                           setcallmenssager([false, ""])
-                           reload()
-                        }, 1500)
-                     }
-
-                     if (!res.ok) {
-                        setcallmenssager([true, "Erro!"])
-                        setTimeout(() => {
-                           setcallmenssager([false, ""])
-                        }, 1500)
-                     }
-                  }
-                  FetchAPI()
-               }}
-            >
-               Enviar
-            </button>
             {callmenssager[0] && <Menssager menssager={callmenssager[1]} />}
          </div>
       </>

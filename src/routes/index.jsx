@@ -13,6 +13,7 @@ import Deshboard from "../App/FluxoDeCaixa/deshboard"
 import CreateAccount from "../createaccount.jsx"
 import SelectApp from "../selecApp.jsx"
 import Admin from "../admin.jsx"
+import Treinos from "../App/Treinos/deshboard.jsx"
 
 export default function Rotas() {
    return (
@@ -49,10 +50,18 @@ export default function Rotas() {
             />
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route
-               path="/Deshboard-FluxoDeCaixa"
+               path="/FluxoDeCaixa-Deshboard"
                element={
                   <VerifyLogin>
                      <Deshboard />
+                  </VerifyLogin>
+               }
+            />
+            <Route
+               path="/Treinos-Deshboard"
+               element={
+                  <VerifyLogin>
+                     <Treinos />
                   </VerifyLogin>
                }
             />
