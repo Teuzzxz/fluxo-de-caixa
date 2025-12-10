@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 console.log("NODE_ENV =", process.env.NODE_ENV)
-Menu.setApplicationMenu(null)
+// Menu.setApplicationMenu(null)
 
 const isDev = process.env.NODE_ENV === "development"
 

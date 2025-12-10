@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react"
 import { UserContext } from "../../../context/Usercontext"
 import Menssager from "../../../components/menssager.jsx"
 import Deletefluxo from "./deletefluxo.jsx"
+import { loadUserItems } from "../functions/categoria.jsx"
 
 export default function Editfluxo({ onClose, element, reload }) {
    const { http } = useContext(UserContext)
@@ -19,6 +20,27 @@ export default function Editfluxo({ onClose, element, reload }) {
       observação: element.observação,
       id: element.id,
    })
+
+   //------------------
+
+   const getLocal = () => {
+      let array = localStorage.getItem("Categoria")
+      if (array) {
+         array = array.split(",")
+         setCategoria(array)
+      } else {
+         loadUserItems()
+         setCategoria(localStorage.getItem("Categoria").split(","))
+      }
+   }
+
+   useEffect(() => {
+      getLocal()
+   }, [])
+
+   const [categoria, setCategoria] = useState([])
+
+   //------------------
 
    const delAPI = async () => {
       const result = await Deletefluxo(element, http)
@@ -140,49 +162,46 @@ export default function Editfluxo({ onClose, element, reload }) {
                />
             </div>
 
-            <div className="FDC-add-editFluxo-divs">
-               <label htmlFor="CATEGORIA">Categoria:</label>
-               <select
-                  id="CATEGORIA"
-                  value={form.categoria}
-                  onChange={(evt) => {
-                     handlechanger("categoria", evt.target.value)
-                  }}
-               >
-                  <option value="Despesas Fixas" title="Corte de cabelo , Parcela do curso ...">
-                     Despesas Fixas
-                  </option>
-                  <option value="Assinaturas" title="Google fotos, plano vivo , IPTV">
-                     Assinaturas
-                  </option>
-                  <option value="Compras">Compras</option>
-                  <option value="Locomoção" title="99 , gasolina , seguro da moto/carro ...">
-                     Locomoção
-                  </option>
-                  <option value="Esporte" title="Corridas ,  manutenção da bike ...">
-                     Esporte
-                  </option>
-                  <option value="Saúde">Saúde</option>
-                  <option value="Alimentação">Alimentação</option>
-                  <option value="Lazer">Lazer</option>
-               </select>
-            </div>
+            {form.tipo !== "Entrada" && (
+               <div className="FDC-add-editFluxo-divs">
+                  <label htmlFor="CATEGORIA">Categoria:</label>
+                  <select
+                     id="CATEGORIA"
+                     value={form.categoria}
+                     onChange={(evt) => {
+                        handlechanger("categoria", evt.target.value)
+                     }}
+                  >
+                     <option value=""></option>
+                     {categoria.map((e, p) => {
+                        return (
+                           <option key={p} value={e}>
+                              {e}
+                           </option>
+                        )
+                     })}
+                  </select>
+               </div>
+            )}
 
-            <div className="FDC-add-editFluxo-divs">
-               <label htmlFor="FORMADEPAGAMENTO">Forma de pagamento:</label>
-               <select
-                  id="FORMADEPAGAMENTO"
-                  value={form.formadepagamento}
-                  onChange={(evt) => {
-                     handlechanger("formadepagamento", evt.target.value)
-                  }}
-               >
-                  <option value="Pix">Pix</option>
-                  <option value="Cartão de crédito">Cartão de crédito</option>
-                  <option value="Dinheiro">Dinheiro</option>
-                  <option value="Parcelado">Parcelado</option>
-               </select>
-            </div>
+            {form.tipo !== "Entrada" && (
+               <div className="FDC-add-editFluxo-divs">
+                  <label htmlFor="FORMADEPAGAMENTO">Forma de pagamento:</label>
+                  <select
+                     id="FORMADEPAGAMENTO"
+                     value={form.formadepagamento}
+                     onChange={(evt) => {
+                        handlechanger("formadepagamento", evt.target.value)
+                     }}
+                  >
+                     <option value="Pix">Pix</option>
+                     <option value="Cartão de crédito">Cartão de crédito</option>
+                     <option value="Dinheiro">Dinheiro</option>
+                     <option value="Parcelado">Parcelado</option>
+                     <option value=""></option>
+                  </select>
+               </div>
+            )}
 
             <div className="FDC-add-editFluxo-divs">
                <label htmlFor="OBSERVACAO">observação:</label>

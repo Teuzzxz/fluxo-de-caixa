@@ -1,9 +1,12 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../context/Usercontext"
+import EditCategoria from "./components/editcategorias"
 
 export default function Header() {
    const [editPerfil, seteditPerfil] = useState(false)
+   const [editCategoria, seteditCategoria] = useState(false)
+
    const navigate = useNavigate()
    return (
       <>
@@ -36,17 +39,33 @@ export default function Header() {
                         ❌
                      </button>
                   </div>
+
+                  <button
+                     className="FDC-Header-EditarPerfil-Button"
+                     onClick={() => {
+                        seteditCategoria(true)
+                     }}
+                  >
+                     Editar categorias
+                  </button>
+
                   <button
                      className="FDC-Header-EditarPerfil-Button"
                      onClick={() => {
                         navigate("/SelectApp")
                      }}
                   >
-                     {" "}
-                     Sair{" "}
+                     Sair
                   </button>
                </div>
             </>
+         )}
+         {editCategoria && (
+            <EditCategoria
+               onClose={() => {
+                  seteditCategoria(false)
+               }}
+            />
          )}
       </>
    )

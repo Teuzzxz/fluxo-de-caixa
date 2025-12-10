@@ -71,8 +71,8 @@ export default function FluxoAcumulado({ dados }) {
    }
 
    return (
-      <div className="FDC-Gráficos FDC-Gráfico-principal">
-         <Line data={chartData} options={options} height={100} />
+      <div className=" FDC-Gráfico-principal">
+         <Line data={chartData} options={options} style={{ width: "100vw " }} />
       </div>
    )
 }

@@ -211,21 +211,21 @@ export default function Deshboard() {
             <div className="FDC-resumo">
                <h1>RESUMO</h1>
                <h2>
-                  💰 Entradas: <span> {Entradas(dados) || 0}</span>
+                  💰 Entradas: <span> {parseInt(Entradas(dados)) || 0}</span>
                </h2>
                <h2>
-                  💸 Saídas: <span> {Saídas(dados) || 0}</span>
+                  💸 Saídas: <span> {parseInt(Saídas(dados)) || 0}</span>
                </h2>
                <h2>
-                  🧾 Saldo: <span> {Entradas(dados) - Saídas(dados) || 0}</span>
+                  🧾 Saldo: <span> {parseInt(Entradas(dados) - Saídas(dados)) || 0}</span>
                </h2>
                <h2>
                   📅 Despesas médias diárias: {""}
-                  <span> {parseInt(Saídas(dados) / 30) || 0}</span>
+                  <span> {parseInt(parseInt(Saídas(dados) / 30)) || 0}</span>
                </h2>
                <h2>
                   💥 Maior gasto: {""}
-                  <span> {Maiorgasto(dados) || 0}</span>
+                  <span> {parseInt(Maiorgasto(dados)) || 0}</span>
                </h2>
                <h2>
                   📊 Gasto por categoria:
@@ -233,7 +233,7 @@ export default function Deshboard() {
                      {Categorias(dados) && Categorias(dados).length > 0 ? (
                         Categorias(dados).map((e, i) => (
                            <h4 key={i} style={{ fontWeight: "lighter" }}>
-                              {e.categoria}: <span> {e.total}</span>
+                              {e.categoria}: <span> {parseInt(e.total)}</span>
                            </h4>
                         ))
                      ) : (
@@ -265,8 +265,10 @@ export default function Deshboard() {
 
          {/* ----------------------------------------------GRAFICOS----------------------------------------------------- */}
 
-         <div className="FDC-Gráficos FDC-Gráfico-principal-div">
+         <div className="FDC-Grafico-Banco">
             <EvolucaoDiaria dados={dados} />
+
+            <div className="FDC-Banco"></div>
          </div>
 
          <div className="FDC-Gráficos-secundários FDC-Gráficos">

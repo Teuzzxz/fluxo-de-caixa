@@ -12,18 +12,18 @@ export default function AdminRouter({ children }) {
    useEffect(() => {
       const verificarLogin = async () => {
          try {
-            const resposta = await fetch(http + "/admin", {
+            const resposta = await fetch(http + "/admin/Acess", {
                method: "GET",
                credentials: "include",
             })
 
-            if (resposta.ok) {
+            const res = await resposta.json()
+
+            if (res.ok) {
                setEstaLogado(true)
-               console.log("deu certo")
             } else {
                setEstaLogado(false)
-               console.log("deu errado")
-               console.log(resposta)
+               console.log(res.menssager)
             }
          } catch (error) {
             setEstaLogado(false)

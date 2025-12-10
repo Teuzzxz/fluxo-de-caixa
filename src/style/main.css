@@ -107,3 +107,8 @@ button {
 button:hover {
    background-color: var(--btn-outline-border);
 }
+
+input:focus,
+select:focus {
+   outline: none;
+}

@@ -3,7 +3,7 @@ import { UserContext } from "../../context/Usercontext"
 import { useNavigate } from "react-router-dom"
 
 export default function VerifyToken({ children }) {
-   const { http } = useContext(UserContext)
+   const { http, setApps } = useContext(UserContext)
    const [estaLogado, setEstaLogado] = useState(null)
    const navigate = useNavigate()
 
@@ -15,15 +15,17 @@ export default function VerifyToken({ children }) {
                credentials: "include",
             })
 
-            if (resposta.ok) {
-               console.log("já logado")
+            const res = await resposta.json()
+
+            if (res.ok) {
                setEstaLogado(true)
-            } else {
-               console.log("Não está logado")
+            }
+            if (!res.ok) {
+               console.log(res.menssager)
                setEstaLogado(false)
             }
          } catch (error) {
-            console.log("Erro no try/catch")
+            console.error(error)
             setEstaLogado(false)
          }
       }

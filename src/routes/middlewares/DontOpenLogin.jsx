@@ -15,7 +15,9 @@ export default function DontOpenLogin({ children }) {
                credentials: "include",
             })
 
-            if (resposta.ok) {
+            const res = await resposta.json()
+
+            if (res.ok) {
                console.log("já logado")
                setEstaLogado(true)
             } else {
