@@ -11,15 +11,11 @@ export default function VerifyLogin({ children }) {
       const verificarLogado = async () => {
          try {
             const resposta = await fetch(http + "/logado", {
-               method: "POST",
-               headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-               },
+               method: "GET",
+
                credentials: "include",
             })
             const res = await resposta.json()
-            console.log(res)
 
             if (res.ok) {
                setEstaLogado(true)

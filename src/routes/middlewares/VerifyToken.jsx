@@ -11,10 +11,7 @@ export default function VerifyToken({ children }) {
       const verificarLogado = async () => {
          try {
             const resposta = await fetch(http + "/logado", {
-               method: "POST",
-               headers: {
-                  "Content-Type": "application/json",
-               },
+               method: "GET",
                credentials: "include",
             })
 
