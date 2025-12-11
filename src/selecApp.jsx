@@ -13,6 +13,7 @@ export default function SelectApp() {
    return (
       <>
          <button
+            className="SelectApp-apps-logout"
             onClick={() => {
                const Logout = async () => {
                   try {
@@ -22,7 +23,6 @@ export default function SelectApp() {
                      })
 
                      if (resposta.ok) {
-                        console.log("token apagado com sucesso")
                         location.reload()
                      }
                      if (!resposta.ok) {
@@ -35,7 +35,7 @@ export default function SelectApp() {
                Logout()
             }}
          >
-            Logout
+            Sair
          </button>
          <div className="SelectApp-apps">
             <div
@@ -74,17 +74,6 @@ export default function SelectApp() {
                      </div>
                   )
                })}
-               {/* <div className="SelectApp-apps-Apps-FDC">
-                  <img
-                     id="SELECTAPPS-FDC"
-                     className="SelectApp-fluxoDeCaixa"
-                     onClick={() => {
-                        navigate("/FluxoDeCaixa-Deshboard")
-                     }}
-                     src="fluxo-de-caixa-icon.png"
-                  />
-                  <label htmlFor="SELECTAPPS-FDC">FDC</label>
-               </div> */}
             </div>
          </div>
       </>

@@ -3,6 +3,55 @@
 /* ---------------------HEADER--------------------------- */
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
+@media (max-width: 600px) {
+   .FDC-Header-D1 {
+      & h1 {
+         font-size: 1.5em;
+      }
+   }
+   .FDC-Lista-Grid {
+      display: none;
+   }
+
+   .FDC-Grafico-Banco {
+      flex-direction: column;
+   }
+   .FDC-Gráfico-principal {
+      width: 100vw !important;
+      height: 300px !important;
+   }
+   .FDC-add-editFluxo {
+      max-width: 400px;
+   }
+}
+@media (max-width: 800px) {
+   .FDC-Lista-Grid {
+      max-width: 500px !important;
+   }
+}
+
+@media (max-width: 1200px) {
+   .FDC-Lista-Resumo {
+      background-color: var(--gray-800);
+      flex-direction: column;
+   }
+   .FDC-Gráficos-secundários {
+      flex-direction: column;
+   }
+   .FDC-resumo {
+      margin-top: 30px;
+   }
+   .FDC-Grafico-Banco {
+      flex-direction: column;
+   }
+   .FDC-Lista-Grid {
+      width: 80vw !important;
+   }
+   .Grafico {
+      display: flex;
+      justify-content: center;
+   }
+}
 
 .FDC-Header {
    height: 60px;
@@ -163,17 +212,6 @@
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 
-@media (max-width: 1200px) {
-   .FDC-Lista-Resumo {
-      background-color: var(--gray-800);
-      flex-direction: column;
-   }
-
-   .FDC-resumo {
-      margin-top: 30px;
-   }
-}
-
 .FDC-Lista-Resumo {
    margin-top: 20px;
    display: flex;
@@ -208,7 +246,6 @@
    }
 }
 .FDC-Lista-Grid {
-   min-width: 800px;
    width: 60vw;
    height: 300px;
    overflow-y: auto;

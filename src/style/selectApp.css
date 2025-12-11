@@ -1,10 +1,18 @@
+@media (max-width: 600px) {
+   .SelectApp-apps {
+      min-width: 100vw;
+   }
+}
+.SelectApp-apps-logout {
+   cursor: pointer;
+}
 .SelectApp-apps {
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   background-color: rgba(0, 0, 0, 0.2);
-   width: 50vw;
+   width: 70vw;
+   max-width: 900px;
    height: 45vh;
    display: flex;
    flex-direction: column;
@@ -20,10 +28,10 @@
    & .SelectApp-apps-Apps {
       height: 70%;
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: space-around;
 
       & .SelectApp-apps-Apps-all {
-         margin-right: 30px;
          display: flex;
          flex-direction: column;
          align-items: center;
@@ -32,7 +40,7 @@
    }
 }
 .SelectApp-fluxoDeCaixa {
-   width: 50px;
-   height: 50px;
+   width: 70px;
+   height: 70px;
    cursor: pointer;
 }
