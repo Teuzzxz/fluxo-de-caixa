@@ -1,6 +1,6 @@
-import { UserContext } from "./context/Usercontext.jsx"
+import { UserContext } from "../../context/Usercontext.jsx"
 import { useEffect, useContext, useState } from "react"
-import "./style/admin.css"
+import "./admin.css"
 
 export default function Admin() {
    const { http } = useContext(UserContext)

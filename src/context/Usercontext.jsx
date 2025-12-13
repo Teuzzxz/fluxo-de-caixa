@@ -7,8 +7,7 @@ export function Provider({ children }) {
    const localhost = "http://localhost:4000"
    const http = render
    const [apps, setApps] = useState([])
-
-   console.log(document.cookie)
+   const [fluxoAtual, setfluxoAtual] = useState([])
 
    return (
       <UserContext.Provider
@@ -16,6 +15,8 @@ export function Provider({ children }) {
             http,
             apps,
             setApps,
+            fluxoAtual,
+            setfluxoAtual,
          }}
       >
          {children}

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
-import { UserContext } from "./context/Usercontext.jsx"
-import { loadUserItems } from "./App/FluxoDeCaixa/functions/categoria.jsx"
+import { UserContext } from "../../context/Usercontext.jsx"
+import { loadUserItems } from "../../App/FluxoDeCaixa/components/categoria/functions/categoria.jsx"
 
-import "./style/selectApp.css"
+import "./selectApp.css"
 
 export default function SelectApp() {
    loadUserItems()

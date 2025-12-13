@@ -1,0 +1,33 @@
+.container {
+   height: 60px;
+   display: flex;
+   justify-content: space-around;
+   background-color: var(--gray-600);
+}
+.title {
+   display: flex;
+   align-items: center;
+   color: black;
+   font-size: 0.8em;
+}
+
+.container_2 {
+   display: flex;
+   align-items: center;
+}
+
+.menu {
+   width: 38px;
+   height: 38px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transform: translate(20px, -1px);
+}
+.user img {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 35px;
+   height: 35px;
+}

@@ -6,7 +6,7 @@ import Rotas from "./routes/index.jsx"
 import { Provider } from "./context/Usercontext.jsx"
 
 import "./style/main.css"
-import "./style/mensagem.css"
+import "./style/variables.css"
 
 createRoot(document.getElementById("root")).render(
    <StrictMode>

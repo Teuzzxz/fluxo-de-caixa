@@ -7,13 +7,13 @@ import DontOpenLogin from "./middlewares/DontOpenLogin.jsx"
 import AdminRouter from "./middlewares/adminRouter.jsx"
 
 //Pages
-import Login from "../login.jsx"
-import CasaCmg from "../App/FluxoDeCaixa/secret/casacmg.jsx"
-import Deshboard from "../App/FluxoDeCaixa/deshboard"
-import CreateAccount from "../createaccount.jsx"
-import SelectApp from "../selecApp.jsx"
-import Admin from "../admin.jsx"
-import Treinos from "../App/Treinos/deshboard.jsx"
+import Login from "../pages/Login/login.jsx"
+import CasaCmg from "../pages/secret/casacmg.jsx"
+import Deshboard from "../App/FluxoDeCaixa/deshboard/deshboard.jsx"
+import CreateAccount from "../pages/Login/createaccount.jsx"
+import SelectApp from "../pages/selectApp/selecApp.jsx"
+import Admin from "../pages/admin/admin.jsx"
+import Treinos from "../App/Treinos/deshboard/deshboard.jsx"
 
 export default function Rotas() {
    return (

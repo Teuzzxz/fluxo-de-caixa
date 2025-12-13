@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Navigate, useNavigate } from "react-router-dom"
-import { calcularNotaTreino } from "./components/CalcularNota.js"
+import { calcularNotaTreino } from "../components/CalcularNota.js"
 
 export default function Treinos() {
    const navigate = useNavigate()

@@ -1,4 +1,4 @@
-import { loadUserItems, removeItem, addItem } from "../functions/categoria.jsx"
+import { loadUserItems, removeItem, addItem } from "./functions/categoria.jsx"
 import { useState, useEffect } from "react"
 
 export default function EditCategoria({ onClose }) {

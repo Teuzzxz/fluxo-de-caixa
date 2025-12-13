@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "./context/Usercontext.jsx"
-import Menssager from "./components/menssager.jsx"
-import "./style/Login.css"
+import { UserContext } from "../../context/Usercontext.jsx"
+import Menssager from "../../components globais/menssager.jsx"
+import "./Login.css"
 
 export default function Login() {
    const navigate = useNavigate()

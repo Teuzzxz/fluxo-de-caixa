@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "./context/Usercontext"
-import Menssager from "./components/menssager.jsx"
+import { UserContext } from "../../context/Usercontext.jsx"
+import Menssager from "../../components globais/menssager.jsx"
 
 export default function CreateAccount() {
    const { http } = useContext(UserContext)
@@ -10,7 +10,7 @@ export default function CreateAccount() {
 
    const [name, setname] = useState("")
    const [password, setpassword] = useState("")
-   const [callmenssager, setcallmenssager] = useState([false, ""])
+   const [callmenssager, setcallmenssaer] = useState([false, ""])
 
    return (
       <>
