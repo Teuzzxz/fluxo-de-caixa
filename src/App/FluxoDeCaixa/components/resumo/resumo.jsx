@@ -11,36 +11,36 @@ export default function Resumo({ dados }) {
          <div className={Styles.container}>
             <h1>RESUMO</h1>
             <h2>
-               💰 Entradas: <span> {parseInt(Entradas(dados)) || 0}</span>
+               💰 Entradas: <span> {parseFloat(Entradas(dados)).toFixed(2) || 0}</span>
             </h2>
             <h2>
-               💸 Saídas: <span> {parseInt(Saídas(dados)) || 0}</span>
+               💸 Saídas: <span> {parseFloat(Saídas(dados)).toFixed(2) || 0}</span>
             </h2>
             <h2>
-               🧾 Saldo: <span> {parseInt(Entradas(dados) - Saídas(dados)) || 0}</span>
+               🧾 Saldo: <span> {parseFloat(Entradas(dados) - Saídas(dados)).toFixed(2) || 0}</span>
             </h2>
             <h2>
                📅 Despesas médias diárias: {""}
-               <span> {parseInt(parseInt(Saídas(dados) / 30)) || 0}</span>
+               <span> {parseFloat(Saídas(dados) / 30).toFixed(2) || 0}</span>
             </h2>
             <h2>
                💥 Maior gasto: {""}
-               <span> {parseInt(Maiorgasto(dados)) || 0}</span>
+               <span> {parseFloat(Maiorgasto(dados)).toFixed(2) || 0}</span>
             </h2>
-            <h2>
+            {/* <h2>
                📊 Gasto por categoria:
                <span style={{ textAlign: "center" }}>
                   {Categorias(dados) && Categorias(dados).length > 0 ? (
                      Categorias(dados).map((e, i) => (
                         <h4 key={i} style={{ fontWeight: "lighter" }}>
-                           {e.categoria}: <span> {parseInt(e.total)}</span>
+                           {e.categoria}: <span> {parseFloat(e.total).toFixed(2)}</span>
                         </h4>
                      ))
                   ) : (
                      <p></p>
                   )}
                </span>
-            </h2>
+            </h2> */}
          </div>
       </>
    )

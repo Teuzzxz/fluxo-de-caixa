@@ -52,7 +52,7 @@ export default function Editfluxo({ onClose, element, reload, msg }) {
 
       // Formata com separador de milhar
       const reaisFormatado = Number(reais).toLocaleString("pt-BR")
-      handlechanger("valor", `${reaisFormatado},${centavos}`)
+      handlechanger("valor", `${reaisFormatado}.${centavos}`)
    }
 
    //------------------

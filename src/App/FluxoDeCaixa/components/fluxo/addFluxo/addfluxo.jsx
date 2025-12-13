@@ -51,7 +51,7 @@ export default function AddFluxo({ onClose, msg, reload }) {
 
       // Formata com separador de milhar
       const reaisFormatado = Number(reais).toLocaleString("pt-BR")
-      handlechanger("valor", `${reaisFormatado},${centavos}`)
+      handlechanger("valor", `${reaisFormatado}.${centavos}`)
    }
    return (
       <>

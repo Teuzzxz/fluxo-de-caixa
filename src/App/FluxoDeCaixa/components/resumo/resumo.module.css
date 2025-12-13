@@ -1,3 +1,12 @@
 .container {
+   font-size: 1em;
+   margin-top: 40px;
    border: 1px solid black;
+}
+.container h2 {
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: lighter;
+}
+.container span {
+   font-weight: bold;
 }
