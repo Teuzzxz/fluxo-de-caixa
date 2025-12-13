@@ -9,6 +9,12 @@ import Styles from "../fluxo.module.css"
 export default function AddFluxo({ onClose, msg, reload }) {
    //------------------
 
+   //------------------
+
+   const { http } = useContext(UserContext)
+   const data = new Date()
+   const [date, setdate] = useState(data.toISOString().split("T")[0])
+   const [categoria, setCategoria] = useState([])
    const [form, setform] = useState({
       tipo: "Saída",
       valor: "",
@@ -18,13 +24,6 @@ export default function AddFluxo({ onClose, msg, reload }) {
       formadepagamento: "Pix",
       observação: "",
    })
-
-   //------------------
-
-   const { http } = useContext(UserContext)
-   const data = new Date()
-   const [date, setdate] = useState(data.toISOString().split("T")[0])
-   const [categoria, setCategoria] = useState([])
 
    //------------------
 
