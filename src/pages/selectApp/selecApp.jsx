@@ -21,15 +21,18 @@ export default function SelectApp() {
                         method: "POST",
                         credentials: "include",
                      })
+                     const res = await resposta.json()
 
-                     if (resposta.ok) {
-                        location.reload()
+                     if (res.ok) {
+                        navigate("/")
                      }
-                     if (!resposta.ok) {
-                        console.log("deu erro")
+                     if (!res.ok) {
+                        console.log("BACKERRO")
+
+                        console.log(res.error)
                      }
                   } catch (error) {
-                     console.log("erro no catch" + error)
+                     console.log(error)
                   }
                }
                Logout()
