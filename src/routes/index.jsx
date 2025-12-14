@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes, Navigate } from "react-router-dom"
+import { BrowserRouter, HashRouter, Route, Routes, Navigate } from "react-router-dom"
 
 //Middlewares
 import VerifyToken from "./middlewares/VerifyToken.jsx"
@@ -17,7 +17,7 @@ import Treinos from "../App/Treinos/deshboard/deshboard.jsx"
 
 export default function Rotas() {
    return (
-      <HashRouter>
+      <BrowserRouter>
          <Routes>
             <Route
                path="/admin"
@@ -66,6 +66,6 @@ export default function Rotas() {
                }
             />
          </Routes>
-      </HashRouter>
+      </BrowserRouter>
    )
 }
