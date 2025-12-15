@@ -22,18 +22,36 @@ export default function Menulateral({ isOpen, handleOpen, setactivemodal }) {
             <div className={Styles.buttons}>
                <button
                   onClick={() => {
-                     handleOpen()
+                     handleOpen() //Fechar o menu
                      setTimeout(() => {
-                        setactivemodal((prev) => ({ ...prev, screen: "new" }))
+                        setactivemodal((prev) => ({ ...prev, screen: "new" })) //Abre a tela
                      }, 250)
                   }}
                >
                   Add Fluxo
                </button>
+               <button
+                  onClick={() => {
+                     handleOpen() //Fechar o menu
+                     setTimeout(() => {
+                        setactivemodal((prev) => ({ ...prev, screen: "graficos" })) //Abre a tela
+                     }, 250)
+                  }}
+               >
+                  Graficos
+               </button>
+               <button
+                  onClick={() => {
+                     handleOpen()
+                     setTimeout(() => {
+                        setactivemodal((prev) => ({ ...prev, screen: "categorias" })) //Abre a tela
+                     }, 250)
+                  }}
+               >
+                  Editar categorias
+               </button>
                <button>Deshboard Anual</button>
                <button>Contas bancárias</button>
-               <button>Graficos</button>
-               <button>Editar categorias</button>
                <SairdoApp />
             </div>
          </div>

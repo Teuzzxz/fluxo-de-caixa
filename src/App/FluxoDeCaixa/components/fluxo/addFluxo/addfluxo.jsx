@@ -18,6 +18,7 @@ export default function AddFluxo({ onClose, msg, reload }) {
    const [form, setform] = useState({
       tipo: "Saída",
       valor: "",
+      valorNumber: "",
       descrição: "",
       data: date,
       categoria: "",
@@ -35,23 +36,23 @@ export default function AddFluxo({ onClose, msg, reload }) {
       setform((prev) => ({ ...prev, [field]: value }))
    }
 
+   const formatCurrencyBR = (valueInCents) => {
+      const value = valueInCents / 100
+      return value.toLocaleString("pt-BR", {
+         minimumFractionDigits: 2,
+         maximumFractionDigits: 2,
+      })
+   }
+
    const handleChangevalue = (e) => {
-      // Remove tudo que não é número
       let numbers = e.target.value.replace(/\D/g, "")
+      if (!numbers) numbers = "0"
+      const valueInCents = Number(numbers)
+      const valueNumber = valueInCents / 100
+      const valueFormatted = formatCurrencyBR(valueInCents)
 
-      // Remove zeros à esquerda
-      numbers = numbers.replace(/^0+/, "") || "0"
-
-      // Garante pelo menos 3 dígitos (para ter centavos)
-      numbers = numbers.padStart(3, "0")
-
-      // Separa reais e centavos
-      const reais = numbers.slice(0, -2)
-      const centavos = numbers.slice(-2)
-
-      // Formata com separador de milhar
-      const reaisFormatado = Number(reais).toLocaleString("pt-BR")
-      handlechanger("valor", `${reaisFormatado}.${centavos}`)
+      handlechanger("valorNumber", valueFormatted) // exibição
+      handlechanger("valor", valueNumber) // número REAL
    }
    return (
       <>
@@ -110,7 +111,7 @@ export default function AddFluxo({ onClose, msg, reload }) {
                         id="VALOR"
                         type="text"
                         inputMode="numeric"
-                        value={form.valor}
+                        value={form.valorNumber}
                         onChange={(e) => {
                            handleChangevalue(e)
                         }}

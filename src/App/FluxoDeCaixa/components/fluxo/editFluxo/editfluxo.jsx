@@ -8,12 +8,23 @@ import getCategoria from "../functions/getCategoria.js"
 import Styles from "../fluxo.module.css"
 
 export default function Editfluxo({ onClose, element, reload, msg }) {
+   const formatMoneyBR = (value) => {
+      if (value === null || value === undefined || isNaN(value)) {
+         return "0,00"
+      }
+
+      return Number(value).toLocaleString("pt-BR", {
+         minimumFractionDigits: 2,
+         maximumFractionDigits: 2,
+      })
+   }
    //------------------
    const [form, setform] = useState({
       _id: element._id,
       userID: element.userID,
       tipo: element.tipo,
       valor: element.valor,
+      valorNumber: formatMoneyBR(element.valor),
       descrição: element.descrição,
       data: element.data,
       categoria: element.categoria,
@@ -36,23 +47,23 @@ export default function Editfluxo({ onClose, element, reload, msg }) {
       setform((prev) => ({ ...prev, [field]: value }))
    }
 
+   const formatCurrencyBR = (valueInCents) => {
+      const value = valueInCents / 100
+      return value.toLocaleString("pt-BR", {
+         minimumFractionDigits: 2,
+         maximumFractionDigits: 2,
+      })
+   }
+
    const handleChangevalue = (e) => {
-      // Remove tudo que não é número
       let numbers = e.target.value.replace(/\D/g, "")
+      if (!numbers) numbers = "0"
+      const valueInCents = Number(numbers)
+      const valueNumber = valueInCents / 100
+      const valueFormatted = formatCurrencyBR(valueInCents)
 
-      // Remove zeros à esquerda
-      numbers = numbers.replace(/^0+/, "") || "0"
-
-      // Garante pelo menos 3 dígitos (para ter centavos)
-      numbers = numbers.padStart(3, "0")
-
-      // Separa reais e centavos
-      const reais = numbers.slice(0, -2)
-      const centavos = numbers.slice(-2)
-
-      // Formata com separador de milhar
-      const reaisFormatado = Number(reais).toLocaleString("pt-BR")
-      handlechanger("valor", `${reaisFormatado}.${centavos}`)
+      handlechanger("valorNumber", valueFormatted)
+      handlechanger("valor", valueNumber)
    }
 
    //------------------
@@ -126,7 +137,7 @@ export default function Editfluxo({ onClose, element, reload, msg }) {
                         id="VALOR"
                         type="text"
                         inputMode="numeric"
-                        value={form.valor}
+                        value={form.valorNumber}
                         onChange={(e) => {
                            handleChangevalue(e)
                         }}

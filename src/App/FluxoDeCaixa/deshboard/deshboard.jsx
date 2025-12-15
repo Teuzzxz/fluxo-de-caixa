@@ -1,6 +1,5 @@
 // React e hooks
 import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 // Contexto
 import { UserContext } from "../../../context/Usercontext.jsx"
@@ -11,15 +10,12 @@ import Header from "../components/header/header.jsx"
 import Table from "../components/tabela/Tabela.jsx"
 import Resumo from "../components/resumo/resumo.jsx"
 import Datas from "../components/datas/Datas.jsx"
+import Graficos from "../components/graficos/graficos.jsx"
+import EditCategoria from "../components/categoria/editcategorias.jsx"
 
 // Componentes do fluxo
 import AddFluxo from "../components/fluxo/addFluxo/addfluxo.jsx"
 import Editfluxo from "../components/fluxo/editFluxo/editfluxo.jsx"
-
-// Gráficos
-import PizzaSaídas from "../graphics/pizzaSaída.jsx"
-import GraficoResumo from "../graphics/SaídaEntradas.jsx"
-import EvolucaoDiaria from "../graphics/EvoluçãoDiária.jsx"
 
 // Mensager
 import Menssager from "../../../components globais/menssager.jsx"
@@ -90,16 +86,23 @@ export default function Deshboard() {
             />
          )}
 
-         {/* <div className="FDC-Grafico-Banco">
-            <EvolucaoDiaria dados={dados} />
+         {activemodal.screen === "graficos" && (
+            <Graficos
+               onClose={() => {
+                  setactivemodal((prev) => ({ ...prev, screen: "" }))
+               }}
+               dados={fluxoAtual}
+            />
+         )}
 
-            <div className="FDC-Banco"></div>
-         </div>
-
-         <div className="FDC-Gráficos-secundários FDC-Gráficos">
-            <PizzaSaídas dados={dados} />
-            <GraficoResumo dados={dados} />
-         </div> */}
+         {activemodal.screen === "categorias" && (
+            <EditCategoria
+               onClose={() => {
+                  setactivemodal((prev) => ({ ...prev, screen: "" }))
+               }}
+               dados={fluxoAtual}
+            />
+         )}
 
          {callmenssager[0] && <Menssager menssager={callmenssager[1]} />}
       </>

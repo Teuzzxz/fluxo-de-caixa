@@ -1,6 +1,17 @@
 import Styles from "./Tabela.module.css"
 
 export default function Table({ dados, setactivemodal }) {
+   const formatMoneyBR = (value) => {
+      if (value === null || value === undefined || isNaN(value)) {
+         return "0,00"
+      }
+
+      return Number(value).toLocaleString("pt-BR", {
+         minimumFractionDigits: 2,
+         maximumFractionDigits: 2,
+      })
+   }
+
    const color = (e) => ({
       backgroundColor: e.tipo === "Entrada" ? "#4bb25a" : "rgba(255, 1, 1, 0.591)",
    })
@@ -42,7 +53,7 @@ export default function Table({ dados, setactivemodal }) {
                      <h1>{e.tipo}</h1>
                   </div>
                   <div>
-                     <h1>{e.valor}</h1>
+                     <h1>{formatMoneyBR(e.valor)}</h1>
                   </div>
                   <div>
                      <h1>{e.categoria}</h1>

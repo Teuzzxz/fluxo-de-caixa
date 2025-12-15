@@ -1,0 +1,32 @@
+.container {
+   height: 100vh;
+   width: 100vw;
+   background-color: var(--gray-700);
+   position: fixed;
+   top: 0;
+   left: 0;
+}
+.title {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   margin-top: 10px;
+}
+.title button {
+   width: 30px;
+   height: 30px;
+   background-color: var(--gray-700);
+   border: 1px solid black;
+   transition: 0.3s;
+   font-size: 1.5em;
+}
+
+.graficos {
+   margin-top: 50px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+.graficos .grafico_2 {
+   margin-top: 70px;
+}

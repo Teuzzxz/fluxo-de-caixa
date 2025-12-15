@@ -23,6 +23,7 @@
    align-items: center;
    justify-content: center;
    transform: translate(20px, -1px);
+   cursor: pointer;
 }
 .user img {
    display: flex;
