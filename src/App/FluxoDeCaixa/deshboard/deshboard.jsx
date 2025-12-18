@@ -12,6 +12,7 @@ import Resumo from "../components/resumo/resumo.jsx"
 import Datas from "../components/datas/Datas.jsx"
 import Graficos from "../components/graficos/graficos.jsx"
 import EditCategoria from "../components/categoria/editcategorias.jsx"
+import Bancos from "../components/bancos/bancos.jsx"
 
 // Componentes do fluxo
 import AddFluxo from "../components/fluxo/addFluxo/addfluxo.jsx"
@@ -101,6 +102,14 @@ export default function Deshboard() {
                   setactivemodal((prev) => ({ ...prev, screen: "" }))
                }}
                dados={fluxoAtual}
+            />
+         )}
+
+         {activemodal.screen === "bancos" && (
+            <Bancos
+               onClose={() => {
+                  setactivemodal((prev) => ({ ...prev, screen: "" }))
+               }}
             />
          )}
 

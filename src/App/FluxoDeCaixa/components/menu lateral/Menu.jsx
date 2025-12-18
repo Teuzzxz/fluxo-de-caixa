@@ -50,8 +50,17 @@ export default function Menulateral({ isOpen, handleOpen, setactivemodal }) {
                >
                   Editar categorias
                </button>
+               <button
+                  onClick={() => {
+                     handleOpen()
+                     setTimeout(() => {
+                        setactivemodal((prev) => ({ ...prev, screen: "bancos" })) //Abre a tela
+                     }, 250)
+                  }}
+               >
+                  Contas bancárias
+               </button>
                <button>Deshboard Anual</button>
-               <button>Contas bancárias</button>
                <SairdoApp />
             </div>
          </div>
