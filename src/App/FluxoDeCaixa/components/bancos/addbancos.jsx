@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../../../../context/Usercontext.jsx"
 
-export default function AddBancos() {
+import { addBanco } from "./functions/fetchAPI.js"
+
+export default function AddBancos({ onClose }) {
+   const { http } = useContext(UserContext)
    const [form, setform] = useState({
       nome: "",
-      valor: "",
       aonde: "",
    })
 
@@ -16,7 +19,13 @@ export default function AddBancos() {
          <div>
             <div>
                <h1>Adicionar bancos</h1>
-               <button>x</button>
+               <button
+                  onClick={() => {
+                     onClose()
+                  }}
+               >
+                  x
+               </button>
             </div>
             <div>
                <div>
@@ -30,22 +39,12 @@ export default function AddBancos() {
                      }}
                   />
                </div>
+
                <div>
-                  <label htmlFor="NOMEDOBANCO">Valor</label>
+                  <label htmlFor="AONDE">Aonde</label>
                   <input
                      type="text"
-                     id="NOMEDOBANCO"
-                     value={form.valor}
-                     onChange={(e) => {
-                        handleForm("valor", e.target.value)
-                     }}
-                  />
-               </div>
-               <div>
-                  <label htmlFor="NOMEDOBANCO">Aonde</label>
-                  <input
-                     type="text"
-                     id="NOMEDOBANCO"
+                     id="AONDE"
                      placeholder="Porquinho, Conta corrente..."
                      value={form.aonde}
                      onChange={(e) => {
@@ -53,7 +52,13 @@ export default function AddBancos() {
                      }}
                   />
                </div>
-               <button>Adicionar</button>
+               <button
+                  onClick={() => {
+                     addBanco(http, form)
+                  }}
+               >
+                  Adicionar
+               </button>
             </div>
          </div>
       </>

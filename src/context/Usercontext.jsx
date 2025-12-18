@@ -5,7 +5,7 @@ export const UserContext = createContext()
 export function Provider({ children }) {
    const render = "https://api.backroom.website"
    const localhost = "http://localhost:4000"
-   const http = localhost
+   const http = render
    const [apps, setApps] = useState([])
    const [fluxoAtual, setfluxoAtual] = useState([])
 

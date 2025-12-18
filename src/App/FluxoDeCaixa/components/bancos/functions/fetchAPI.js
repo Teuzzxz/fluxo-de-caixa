@@ -4,18 +4,29 @@ export async function getBancos(http) {
       credentials: "include",
    })
    const res = await response.json()
-   console.log(res)
+   return res
 }
 
-export async function addBanco(http, banco) {
+export async function addBanco(http, form) {
    const response = await fetch(http + "/bancos/add", {
       method: "post",
       headers: {
          "Content-Type": "application/json",
       },
       credentials: "include",
-      body: banco,
+      body: JSON.stringify(form),
    })
    const res = await response.json()
-   console.log(res)
+}
+
+export async function lancamento(http, e) {
+   const response = await fetch(http + "/bancos/lancamento", {
+      method: "post",
+      headers: {
+         "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(e),
+   })
+   const res = await response.json()
 }
